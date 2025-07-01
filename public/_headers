@@ -1,0 +1,11 @@
+/*.png
+  Cache-Control: public, max-age=86400
+
+/*.webp
+  Cache-Control: public, max-age=86400
+
+/*.woff2
+  Cache-Control: public, max-age=31556952, immutable
+
+/_nuxt/*
+  Cache-Control: public, max-age=31556952, immutable
