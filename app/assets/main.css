@@ -1,0 +1,41 @@
+@import 'tailwindcss';
+@import '@nuxt/ui';
+
+@layer base {
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--ui-border, currentColor);
+  }
+}
+
+:root {
+  --ui-container: 90rem;
+  --ui-radius: 0.3rem;
+
+  --header-height: 64px;
+
+  --font-family:
+    Inter, 'Noto Sans JP', '-apple-system', BlinkMacSystemFont, Helvetica, Arial, メイリオ, Meiryo, sans-serif;
+
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family);
+
+  scroll-behavior: smooth;
+  word-break: normal;
+  overflow-wrap: anywhere;
+  line-break: strict;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

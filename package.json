@@ -1,0 +1,46 @@
+{
+  "name": "release-viewer",
+  "type": "module",
+  "private": true,
+  "packageManager": "pnpm@10.10.0",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@nuxt/scripts": "0.11.8",
+    "@nuxt/ui": "3.2.0",
+    "@nuxtjs/robots": "^5.2.11",
+    "@nuxtjs/sitemap": "^7.4.3",
+    "@unhead/vue": "^2.0.11",
+    "@vueuse/core": "^13.4.0",
+    "@vueuse/nuxt": "^13.4.0",
+    "@vueuse/router": "^13.4.0",
+    "git-url-parse": "^16.1.0",
+    "nuxt": "^3.17.5",
+    "vue": "^3.5.17",
+    "vue-router": "^4.5.1"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^4.16.1",
+    "@iconify-json/lucide": "^1.2.54",
+    "@nuxt/eslint": "^1.4.1",
+    "eslint": "^9.30.0",
+    "eslint-plugin-better-tailwindcss": "^3.4.3",
+    "eslint-plugin-format": "^1.0.1",
+    "lint-staged": "^16.1.2",
+    "simple-git-hooks": "^2.13.0",
+    "typescript": "^5.8.3"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
+  }
+}

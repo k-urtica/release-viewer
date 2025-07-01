@@ -1,0 +1,64 @@
+// @ts-check
+import antfu from '@antfu/eslint-config';
+import eslintPluginBetterTailwindcss from 'eslint-plugin-better-tailwindcss';
+
+import withNuxt from './.nuxt/eslint.config.mjs';
+
+export default withNuxt(
+  antfu({
+    formatters: {
+      css: true,
+    },
+    stylistic: {
+      semi: true,
+      overrides: {
+        'style/arrow-parens': ['error', 'always'],
+        'style/brace-style': ['error', '1tbs', { allowSingleLine: true }],
+        'style/operator-linebreak': [
+          'error',
+          'after',
+          { overrides: { '?': 'ignore', ':': 'ignore' } },
+        ],
+      },
+    },
+    vue: {
+      overrides: {
+        'vue/define-macros-order': [
+          'error',
+          {
+            order: [
+              'defineOptions',
+              'defineModel',
+              'defineProps',
+              'defineEmits',
+              'defineSlots',
+            ],
+          },
+        ],
+      },
+    },
+    rules: {
+      'antfu/if-newline': 'off',
+      'antfu/top-level-function': 'off',
+      'style/comma-dangle': 'off',
+      'vue/comma-dangle': 'off',
+      'vue/singleline-html-element-content-newline': 'off',
+    },
+  })
+).append({
+  name: 'eslint-plugin-better-tailwindcss',
+  settings: {
+    'better-tailwindcss': {
+      entryPoint: 'app/assets/main.css',
+    },
+  },
+  plugins: {
+    'better-tailwindcss': eslintPluginBetterTailwindcss,
+  },
+  rules: {
+    'better-tailwindcss/multiline': 'off',
+    'better-tailwindcss/no-duplicate-classes': 'error',
+    'better-tailwindcss/no-unnecessary-whitespace': 'error',
+    'better-tailwindcss/sort-classes': 'error',
+  },
+});
