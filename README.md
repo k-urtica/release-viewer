@@ -71,3 +71,12 @@ Release Viewer helps you easily browse and explore release information from any 
 - **NuxtUI v3** - Modern UI component library
 - **VueUse** - Vue composition utilities
 - **unjs/ungh** - GitHub API client
+
+## Motivation
+
+Honestly, I just needed this for work.
+
+## Future Plans
+
+- Remove ungh and use direct GitHub API access with personal tokens
+- UI improvements
