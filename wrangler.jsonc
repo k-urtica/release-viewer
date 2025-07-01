@@ -1,0 +1,20 @@
+{
+  "name": "release-viewer",
+  "main": "./.output/server/index.mjs",
+  "compatibility_date": "2025-05-15",
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "./.output/public/"
+  },
+  "observability": {
+    "enabled": true
+  },
+  "preview_urls": false,
+  "workers_dev": false,
+  "routes": [
+    {
+      "pattern": "release-viewer.web-toolbox.dev",
+      "custom_domain": true
+    }
+  ]
+}
