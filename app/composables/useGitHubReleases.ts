@@ -1,4 +1,4 @@
-import type { GitHubRelease, ReleasesResponse, RepositoryInfo } from '~~/shared/types/github';
+import type { GitHubRelease, PaginationInfo, ReleasesResponse, RepositoryInfo } from '~~/shared/types/github';
 
 const ERROR_MESSAGES = {
   NOT_FOUND: 'Repository not found. Please check the repository name.',
@@ -9,44 +9,61 @@ const ERROR_MESSAGES = {
 } as const;
 
 /**
- * Composable for fetching GitHub release information
+ * Composable for fetching GitHub release information with pagination support
  */
-export function useGitHubReleases(repository: Ref<RepositoryInfo | null>) {
+export function useGitHubReleases() {
   const releases = shallowRef<GitHubRelease[]>([]);
   const loading = ref(false);
   const error = ref<string | null>(null);
+  const pagination = ref<PaginationInfo>({
+    currentPage: 1,
+    perPage: 30,
+    hasNextPage: false,
+    hasPreviousPage: false,
+  });
 
-  /**
-   * Fetch release list for the specified repository
-   */
-  async function fetchReleases(repositoryInfo: RepositoryInfo): Promise<GitHubRelease[]> {
-    const { releases } = await $fetch<ReleasesResponse>(`/api/releases/${repositoryInfo.owner}/${repositoryInfo.name}`);
-    return releases;
-  }
-
-  /**
-   * Update release list
-   */
-  async function loadReleases() {
-    if (!repository.value) {
-      releases.value = [];
-      error.value = null;
-      return;
-    }
+  async function fetchAndUpdate(repository: RepositoryInfo, page: number, append = false) {
+    if (append && (!pagination.value.hasNextPage || loading.value)) return;
 
     loading.value = true;
     error.value = null;
 
     try {
-      const data = await fetchReleases(repository.value);
-      releases.value = data;
+      const data = await $fetch<ReleasesResponse>(`/api/releases/${repository.owner}/${repository.name}`, {
+        query: {
+          page,
+          per_page: pagination.value.perPage,
+        },
+      });
+
+      releases.value = append ? [...releases.value, ...data.releases] : data.releases;
+      pagination.value = data.pagination;
     } catch (err: any) {
       console.error('Failed to fetch releases:', err);
       error.value = getErrorMessage(err);
-      releases.value = [];
+      if (!append) releases.value = [];
     } finally {
       loading.value = false;
     }
+  }
+
+  async function load(repository: RepositoryInfo, page = 1) {
+    return fetchAndUpdate(repository, page, false);
+  }
+
+  async function loadMore(repository: RepositoryInfo) {
+    return fetchAndUpdate(repository, pagination.value.currentPage + 1, true);
+  }
+
+  async function reset(repository: RepositoryInfo) {
+    releases.value = [];
+    pagination.value = {
+      currentPage: 1,
+      perPage: 30,
+      hasNextPage: false,
+      hasPreviousPage: false,
+    };
+    await load(repository, 1);
   }
 
   function getErrorMessage(err: any): string {
@@ -62,11 +79,13 @@ export function useGitHubReleases(repository: Ref<RepositoryInfo | null>) {
     return err instanceof Error ? err.message : ERROR_MESSAGES.UNKNOWN;
   }
 
-  watch(repository, loadReleases, { immediate: true });
-
   return {
-    releases,
-    loading,
-    error,
+    releases: readonly(releases),
+    loading: readonly(loading),
+    error: readonly(error),
+    pagination: readonly(pagination),
+    load,
+    loadMore,
+    reset,
   };
 }

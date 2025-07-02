@@ -1,7 +1,5 @@
-import type { RestEndpointMethodTypes } from '@octokit/rest';
 import { Octokit } from '@octokit/rest';
-
-const MAX_RELEASES = 100;
+import { fetchGitHubReleases, validatePaginationParams } from '~~/server/utils/github-releases';
 
 const ERRORS = {
   MISSING_PARAMS: {
@@ -42,31 +40,9 @@ const GITHUB_STATUS = {
   SERVER_ERROR_MIN: 500,
 } as const;
 
-type OctokitRelease = RestEndpointMethodTypes['repos']['listReleases']['response']['data'][0];
-
-/**
- * Transform Octokit release data to GitHubRelease format
- */
-function transformOctokitRelease(octokitRelease: OctokitRelease): GitHubRelease {
-  const markdown = octokitRelease.body ?? '';
-
-  return {
-    id: octokitRelease.id,
-    tag: octokitRelease.tag_name,
-    author: octokitRelease.author?.login ?? 'Unknown',
-    authorAvatarUrl: octokitRelease.author?.avatar_url ?? '',
-    name: octokitRelease.name ?? octokitRelease.tag_name,
-    draft: octokitRelease.draft,
-    prerelease: octokitRelease.prerelease,
-    createdAt: octokitRelease.created_at,
-    publishedAt: octokitRelease.published_at,
-    markdown,
-    html: convertMarkdownToHtml(markdown),
-  };
-}
-
 export default defineEventHandler(async (event): Promise<ReleasesResponse> => {
   const { owner, name } = getRouterParams(event);
+  const query = getQuery(event);
 
   if (!owner || !name) {
     throw createError(ERRORS.MISSING_PARAMS);
@@ -76,6 +52,7 @@ export default defineEventHandler(async (event): Promise<ReleasesResponse> => {
     throw createError(ERRORS.INVALID_FORMAT);
   }
 
+  const { page, perPage } = validatePaginationParams(query);
   const githubToken = useRuntimeConfig().githubToken;
 
   const octokit = new Octokit({
@@ -83,17 +60,8 @@ export default defineEventHandler(async (event): Promise<ReleasesResponse> => {
   });
 
   try {
-    const response = await octokit.rest.repos.listReleases({
-      owner,
-      repo: name,
-      per_page: MAX_RELEASES,
-    });
-
-    const releases = response.data.map(transformOctokitRelease);
-
-    return {
-      releases,
-    };
+    const result = await fetchGitHubReleases(octokit, owner, name, page, perPage);
+    return result;
   } catch (error: unknown) {
     console.error('GitHub API error:', error);
 

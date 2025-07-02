@@ -24,8 +24,26 @@ export interface GitHubRelease {
   prerelease: boolean;
   createdAt: string;
   publishedAt: string | null;
-  markdown: string;
   html: string;
+}
+
+/**
+ * Pagination information
+ */
+export interface PaginationInfo {
+  currentPage: number;
+  perPage: number;
+  totalCount?: number;
+  hasNextPage: boolean;
+  hasPreviousPage: boolean;
+}
+
+/**
+ * Pagination query parameters
+ */
+export interface PaginationQuery {
+  page?: number;
+  per_page?: number;
 }
 
 /**
@@ -33,6 +51,7 @@ export interface GitHubRelease {
  */
 export interface ReleasesResponse {
   releases: GitHubRelease[];
+  pagination: PaginationInfo;
 }
 
 /**
