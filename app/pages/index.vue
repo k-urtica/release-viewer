@@ -59,11 +59,6 @@ function handleOpenGitHub(release: GitHubRelease) {
     openGitHubRelease(selectedRepository.value, release);
   }
 }
-
-useSeoMeta({
-  title: 'Release Viewer - GitHub Release Notes Tool',
-  description: 'A web tool to browse GitHub repository release notes with a clean, easy-to-use interface',
-});
 </script>
 
 <template>
