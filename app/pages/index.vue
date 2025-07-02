@@ -101,7 +101,7 @@ function handleOpenGitHub(release: GitHubRelease) {
         />
       </div>
 
-      <div v-if="!isMobile" class="sticky top-[calc(var(--header-height)+1rem)] max-h-[calc(100vh-var(--header-height)-2rem)] lg:col-span-5">
+      <div class="sticky top-[calc(var(--header-height)+1rem)] max-h-[calc(100vh-var(--header-height)-2rem)] max-lg:hidden lg:col-span-5">
         <div class="h-full">
           <div v-if="selectedRelease" class="flex h-full flex-col bg-default">
             <h2 class="mb-4 text-xl font-semibold text-highlighted">
