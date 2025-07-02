@@ -80,3 +80,26 @@ useHead(() => ({
     </div>
   </article>
 </template>
+
+<style scoped>
+:deep(.markdown-body) {
+  ul {
+    list-style: initial;
+    margin: initial;
+    padding-left: 2em;
+  }
+  ul li {
+    display: list-item;
+  }
+
+  ol {
+    list-style-type: decimal;
+    margin: initial;
+    padding-left: 2em;
+  }
+
+  ol li {
+    display: list-item;
+  }
+}
+</style>
