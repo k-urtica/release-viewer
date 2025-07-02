@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { GitHubRelease } from '~/types/ungh';
-
 const open = defineModel<boolean>();
 
 defineProps<{

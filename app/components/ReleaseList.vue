@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { GitHubRelease } from '~/types/ungh';
-
 interface Props {
   releases: GitHubRelease[];
   loading?: boolean;
@@ -82,7 +80,7 @@ function selectRelease(release: GitHubRelease) {
         <div v-if="release.html" class="mt-4 rounded-lg bg-muted/80 p-4">
           <div
             class="pointer-events-none line-clamp-5 text-sm text-toned"
-            v-html="release.html"
+            v-html="sanitizeHtml(release.html)"
           />
         </div>
       </a>

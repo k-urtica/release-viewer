@@ -1,6 +1,4 @@
-import type { GitHubRelease, RepositoryInfo, UnghReleasesResponse } from '~/types/ungh';
-
-const UNGH_BASE_URL = 'https://ungh.cc';
+import type { GitHubRelease, ReleasesResponse, RepositoryInfo } from '~~/shared/types/github';
 
 const ERROR_MESSAGES = {
   NOT_FOUND: 'Repository not found. Please check the repository name.',
@@ -11,7 +9,7 @@ const ERROR_MESSAGES = {
 } as const;
 
 /**
- * ungh APIを使用してGitHubリリース情報を取得するコンポーザブル
+ * Composable for fetching GitHub release information
  */
 export function useGitHubReleases(repository: Ref<RepositoryInfo | null>) {
   const releases = shallowRef<GitHubRelease[]>([]);
@@ -19,17 +17,15 @@ export function useGitHubReleases(repository: Ref<RepositoryInfo | null>) {
   const error = ref<string | null>(null);
 
   /**
-   * 指定されたリポジトリのリリース一覧を取得
+   * Fetch release list for the specified repository
    */
   async function fetchReleases(repositoryInfo: RepositoryInfo): Promise<GitHubRelease[]> {
-    const url = `${UNGH_BASE_URL}/repos/${repositoryInfo.owner}/${repositoryInfo.name}/releases`;
-    const { releases } = await $fetch<UnghReleasesResponse>(url);
-
+    const { releases } = await $fetch<ReleasesResponse>(`/api/releases/${repositoryInfo.owner}/${repositoryInfo.name}`);
     return releases;
   }
 
   /**
-   * リリース一覧を更新
+   * Update release list
    */
   async function loadReleases() {
     if (!repository.value) {

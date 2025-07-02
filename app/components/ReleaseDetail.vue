@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { GitHubRelease } from '~/types/ungh';
-
 defineProps<{
   release: GitHubRelease;
 }>();
@@ -75,7 +73,7 @@ useHead(() => ({
     <div class="mt-6 overflow-hidden rounded-lg ring-1 ring-muted/40">
       <section
         class="markdown-body px-4 py-6"
-        v-html="release.html"
+        v-html="sanitizeHtml(release.html)"
       />
     </div>
   </article>

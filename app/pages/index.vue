@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { GitHubRelease, RepositoryInfo } from '~/types/ungh';
-
 const repository = useRouteQuery<string>('repository', '');
 const inputValue = ref(repository.value);
 const selectedRelease = shallowRef<GitHubRelease>();

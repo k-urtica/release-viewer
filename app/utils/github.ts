@@ -1,4 +1,3 @@
-import type { GitHubRelease, RepositoryInfo } from '~/types/ungh';
 import gitUrlParse from 'git-url-parse';
 
 export function parseRepository(input: string): RepositoryInfo | null {

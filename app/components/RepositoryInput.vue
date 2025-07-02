@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { RepositoryInfo } from '~/types/ungh';
-
 const inputValue = defineModel<string>({ default: '' });
 
 withDefaults(defineProps<{
