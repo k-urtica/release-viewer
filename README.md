@@ -1,12 +1,12 @@
-# Release Viewer
+# Release Viewer 🚀
 
 A clean and intuitive web tool for browsing GitHub repository release notes.
 
-## Overview
+## 📦 Overview
 
 Release Viewer helps you easily browse and explore release information from any GitHub repository. Whether you're tracking updates across multiple projects or diving deep into specific release notes, this tool provides a streamlined experience for staying up-to-date with your favorite open source projects.
 
-## Key Features
+## ✨ Key Features
 
 ### 📋 Release List
 
@@ -35,7 +35,7 @@ Release Viewer helps you easily browse and explore release information from any 
 - Dark mode and light mode support
 - Fast loading and seamless navigation
 
-## How to Use
+## 💡 How to Use
 
 ### Getting Started
 
@@ -56,15 +56,7 @@ Release Viewer helps you easily browse and explore release information from any 
 - **Popular Repos**: Try the suggested popular repositories to explore the tool
 - **Mobile Friendly**: Works great on phones and tablets
 
-## Perfect For
-
-- **Developers** tracking updates in dependencies and tools
-- **Project Managers** monitoring release schedules across projects
-- **Open Source Enthusiasts** staying current with favorite projects
-- **DevOps Teams** coordinating updates and deployments
-- **Anyone** who wants a better way to read GitHub release notes
-
-## Tech Stack
+## 🛠️ Tech Stack
 
 - **Nuxt 3** - Full-stack Vue.js framework
 - **TypeScript** - Type-safe development
@@ -72,11 +64,13 @@ Release Viewer helps you easily browse and explore release information from any 
 - **VueUse** - Vue composition utilities
 - **unjs/ungh** - GitHub API client
 
-## Motivation
+## 💭 Motivation
 
 Honestly, I just needed this for work.
 
-## Future Plans
+## 🎯 Future Plans
 
 - Remove ungh and use direct GitHub API access with personal tokens
+- Pagination for large repositories
+- Search suggestions
 - UI improvements
