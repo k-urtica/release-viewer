@@ -60,6 +60,19 @@ export default defineNuxtConfig({
     fonts: true,
   },
 
+  runtimeConfig: {
+    githubToken: process.env.GH_TOKEN,
+  },
+
+  routeRules: {
+    '/api/releases/**': {
+      cors: true,
+      headers: {
+        'Cache-Control': 'public, max-age=300, s-maxage=21600',
+      },
+    },
+  },
+
   future: {
     compatibilityVersion: 4,
   },
@@ -76,6 +89,7 @@ export default defineNuxtConfig({
       crawlLinks: true,
       routes: ['/', '/sitemap.xml', '/robots.txt'],
     },
+
   },
 
   vite: {

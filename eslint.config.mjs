@@ -40,6 +40,7 @@ export default withNuxt(
     rules: {
       'antfu/if-newline': 'off',
       'antfu/top-level-function': 'off',
+      'node/prefer-global/process': 'off',
       'style/comma-dangle': 'off',
       'vue/comma-dangle': 'off',
       'vue/singleline-html-element-content-newline': 'off',
