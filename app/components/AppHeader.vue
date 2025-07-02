@@ -1,5 +1,5 @@
 <template>
-  <header class="sticky top-0 z-50 border-b bg-default/60 backdrop-blur-sm">
+  <header class="sticky top-0 z-50 border-b border-muted/40 bg-default/60 backdrop-blur-sm">
     <UContainer class="flex h-(--header-height) items-center justify-between">
       <div class="flex items-center gap-3">
         <UIcon

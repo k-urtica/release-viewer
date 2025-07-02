@@ -115,14 +115,15 @@ useSeoMeta({
         />
       </div>
 
-      <div v-if="!isMobile" class="sticky top-[calc(var(--header-height)+1rem)] h-[calc(100vh-var(--header-height)-2rem)] lg:col-span-5">
+      <div v-if="!isMobile" class="sticky top-[calc(var(--header-height)+1rem)] max-h-[calc(100vh-var(--header-height)-2rem)] lg:col-span-5">
         <div class="h-full">
-          <div v-if="selectedRelease" class="max-h-full overflow-y-auto rounded-lg border bg-default p-6">
+          <div v-if="selectedRelease" class="flex h-full flex-col bg-default">
             <h2 class="mb-4 text-xl font-semibold text-highlighted">
               Release Details
             </h2>
             <ReleaseDetail
               :release="selectedRelease"
+              class="overflow-y-auto"
               @close="handleCloseDetail"
               @open-git-hub="handleOpenGitHub"
             />

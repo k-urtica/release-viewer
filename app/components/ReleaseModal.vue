@@ -21,7 +21,7 @@ function handleOpenGitHub(release: GitHubRelease) {
     v-model:open="open"
   >
     <template #content="{ close }">
-      <div class="overflow-auto p-5">
+      <div class="overflow-auto">
         <ReleaseDetail
           :release="release"
           @open-git-hub="handleOpenGitHub"

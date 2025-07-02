@@ -29,7 +29,7 @@ useHead(() => ({
 </script>
 
 <template>
-  <article>
+  <article class="rounded-lg border p-6">
     <header class="space-y-3 border-b pb-2">
       <div class="flex items-center gap-3">
         <h3 class="text-2xl font-bold text-highlighted">
