@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { GitHubRelease, RepositoryInfo } from '~/types/ungh';
-
 const repository = useRouteQuery<string>('repository', '');
 const inputValue = ref(repository.value);
 const selectedRelease = shallowRef<GitHubRelease>();
@@ -12,16 +10,16 @@ const isMobile = breakpoints.smaller('lg');
 
 const selectedRepository = computed<RepositoryInfo | null>(() => {
   const query = repository.value;
-  if (query.includes('/')) {
-    const [owner, name] = query.split('/');
-    if (owner && name) {
-      return { owner, name };
-    }
-  }
-  return null;
+  if (!query.includes('/')) return null;
+
+  const [owner, name] = query.split('/', 2);
+  return (owner && name) ? { owner, name } : null;
 });
 
-const { releases, loading, error } = useGitHubReleases(selectedRepository);
+// Clear selected release when repository changes
+watch(selectedRepository, () => {
+  selectedRelease.value = undefined;
+});
 
 watch(repository, (newValue) => {
   inputValue.value = newValue;
@@ -34,9 +32,9 @@ function handleSearch(repo: RepositoryInfo) {
   openReleaseModal.value = false;
   repository.value = `${repo.owner}/${repo.name}`;
 
-  const repoString = `${repo.owner}/${repo.name}`;
+  // Update search history
   const filteredHistory = searchHistory.value.filter(
-    (item) => `${item.owner}/${item.name}` !== repoString
+    (item) => !(item.owner === repo.owner && item.name === repo.name)
   );
 
   searchHistory.value = [repo, ...filteredHistory].slice(0, 10);
@@ -76,7 +74,6 @@ function handleOpenGitHub(release: GitHubRelease) {
     <div class="mx-auto mt-8 max-w-2xl">
       <RepositoryInput
         v-model="inputValue"
-        :loading="loading"
         @search="handleSearch"
       />
 
@@ -96,15 +93,9 @@ function handleOpenGitHub(release: GitHubRelease) {
           <h2 class="text-xl font-semibold text-highlighted">
             {{ `${selectedRepository.owner}/${selectedRepository.name}` }}
           </h2>
-          <UBadge v-if="releases.length" color="primary" variant="soft">
-            {{ `${releases.length} releases` }}
-          </UBadge>
         </div>
 
-        <ReleaseList
-          :releases="releases"
-          :loading="loading"
-          :error="error"
+        <InfiniteReleaseList
           :repository="selectedRepository"
           @select-release="handleSelectRelease"
         />
@@ -124,7 +115,7 @@ function handleOpenGitHub(release: GitHubRelease) {
             />
           </div>
 
-          <div v-else-if="!loading && releases.length" class="flex flex-col items-center justify-center gap-3 py-10 text-center text-muted">
+          <div v-else class="flex flex-col items-center justify-center gap-3 py-16 text-center text-muted">
             <UIcon name="i-lucide-mouse-pointer-click" class="size-12" />
             <p class="text-lg font-medium">Select a release</p>
             <p class="text-sm">Click on a release from the list to view its details.</p>

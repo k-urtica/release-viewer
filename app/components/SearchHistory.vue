@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { RepositoryInfo } from '~/types/ungh';
-
 defineProps<{
   searchHistory: RepositoryInfo[];
 }>();

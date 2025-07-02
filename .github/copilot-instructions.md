@@ -1,13 +1,13 @@
-## プロジェクトの主要なスタック
+## Main Technology Stack
 
-- **Nuxt4**: compatibilityVersion: 4でappディレクトリベース
-- **NuxtUI v3**: Tailwind CSSベースのUIコンポーネントライブラリ
-- **unjs/ungh**: unjs製のGitHub APIクライアント
-- **Cloudflare**: ホスティングプラットフォーム
-- **VueUse**: Vueのユーティリティライブラリ
-- **TypeScript**: 静的型付け言語
+- **Nuxt 4**: Using compatibilityVersion: 4 with app directory structure
+- **NuxtUI v3**: Tailwind CSS-based UI component library
+- **unjs/ungh**: GitHub API client from unjs
+- **Cloudflare**: Hosting platform
+- **VueUse**: Vue utility library (including useInfiniteScroll)
+- **TypeScript**: Static type checking language
 
-## ディレクトリ構造を抜粋
+## Directory Structure
 
 ```bash
 app/
@@ -19,6 +19,11 @@ app/
   app.config.ts
   app.vue
   error.vue
+server/
+  api/
+  utils/
+shared/
+  types/
 node_modules/
 public/
 nuxt.config.ts
