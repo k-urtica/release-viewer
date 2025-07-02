@@ -11,9 +11,11 @@ Release Viewer helps you easily browse and explore release information from any 
 ### 📋 Release List
 
 - View all releases from any GitHub repository in chronological order
+- **Infinite scroll pagination** for smooth browsing of large release histories
 - See release tags, dates, and titles at a glance
 - Clear identification of pre-releases and beta versions
 - Direct links to view releases on GitHub
+- **Smart loading states** with skeleton placeholders for better UX
 
 ### 📖 Release Details
 
@@ -33,7 +35,9 @@ Release Viewer helps you easily browse and explore release information from any 
 - Responsive design that works perfectly on desktop and mobile
 - Clean, intuitive interface with smooth interactions
 - Dark mode and light mode support
+- **Infinite scroll pagination** for seamless browsing of large repositories
 - Fast loading and seamless navigation
+- **Real-time error handling** with user-friendly messages
 
 ## 💡 How to Use
 
@@ -43,7 +47,7 @@ Release Viewer helps you easily browse and explore release information from any 
    - Repository format: `microsoft/vscode`, `facebook/react`, `nuxt/nuxt`
    - Full URL: `https://github.com/microsoft/vscode`
 
-2. **Browse Releases**: The release list appears automatically, showing all available releases
+2. **Browse Releases**: The release list appears automatically, showing all available releases with infinite scroll for large repositories
 
 3. **View Details**: Click on any release to see the full release notes and details
 
@@ -55,14 +59,17 @@ Release Viewer helps you easily browse and explore release information from any 
 - **Search History**: Your recent searches are saved for quick access
 - **Popular Repos**: Try the suggested popular repositories to explore the tool
 - **Mobile Friendly**: Works great on phones and tablets
+- **Infinite Scroll**: Automatically loads more releases as you scroll down
+- **Smart Loading**: Skeleton placeholders show while content is loading
 
 ## 🛠️ Tech Stack
 
-- **Nuxt 3** - Full-stack Vue.js framework
+- **Nuxt 4** - Full-stack Vue.js framework with compatibility version 4
 - **TypeScript** - Type-safe development
-- **NuxtUI v3** - Modern UI component library
+- **NuxtUI v3** - Modern UI component library with semantic theming
 - **VueUse** - Vue composition utilities
 - **unjs/ungh** - GitHub API client
+- **Tailwind CSS** - Utility-first CSS framework
 
 ## 💭 Motivation
 
@@ -70,7 +77,8 @@ Honestly, I just needed this for work.
 
 ## 🎯 Future Plans
 
+- **✅ Pagination for large repositories** - Implemented with infinite scroll
 - Remove ungh and use direct GitHub API access with personal tokens
-- Pagination for large repositories
-- Search suggestions
-- UI improvements
+- Search suggestions and autocomplete
+- Enhanced filtering and sorting options
+- UI improvements and accessibility enhancements
