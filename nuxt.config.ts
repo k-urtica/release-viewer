@@ -34,7 +34,7 @@ export default defineNuxtConfig({
         { property: 'og:description', content: SITE_DESCRIPTION },
         { property: 'og:type', content: 'website' },
         { property: 'og:url', content: SITE_URL },
-        { property: 'og:image', content: '/opp.webp' },
+        { property: 'og:image', content: '/ogp.webp' },
         { property: 'og:image:type', content: 'image/webp' },
         { property: 'og:image:width', content: '1200' },
         { property: 'og:image:height', content: '600' },
