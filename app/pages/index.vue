@@ -87,47 +87,49 @@ function handleOpenGitHub(release: GitHubRelease) {
       </ClientOnly>
     </div>
 
-    <div v-if="selectedRepository" class="mt-8 grid grid-cols-1 gap-8 border-t pt-8 lg:grid-cols-9">
-      <div class="space-y-4 lg:col-span-4">
-        <div class="flex items-center justify-between gap-2">
-          <h2 class="text-xl font-semibold text-highlighted">
-            {{ `${selectedRepository.owner}/${selectedRepository.name}` }}
-          </h2>
-        </div>
-
-        <InfiniteReleaseList
-          :repository="selectedRepository"
-          @select-release="handleSelectRelease"
-        />
-      </div>
-
-      <div class="sticky top-[calc(var(--header-height)+1rem)] max-h-[calc(100vh-var(--header-height)-2rem)] max-lg:hidden lg:col-span-5">
-        <div class="h-full">
-          <div v-if="selectedRelease" class="flex h-full flex-col bg-default">
-            <h2 class="mb-4 text-xl font-semibold text-highlighted">
-              Release Details
+    <ClientOnly>
+      <div v-if="selectedRepository" class="mt-8 grid grid-cols-1 gap-8 border-t pt-8 lg:grid-cols-9">
+        <div class="space-y-4 lg:col-span-4">
+          <div class="flex items-center justify-between gap-2">
+            <h2 class="text-xl font-semibold text-highlighted">
+              {{ `${selectedRepository.owner}/${selectedRepository.name}` }}
             </h2>
-            <ReleaseDetail
-              :release="selectedRelease"
-              class="overflow-y-auto"
-              @close="handleCloseDetail"
-              @open-git-hub="handleOpenGitHub"
-            />
           </div>
 
-          <div v-else class="flex flex-col items-center justify-center gap-3 py-16 text-center text-muted">
-            <UIcon name="i-lucide-mouse-pointer-click" class="size-12" />
-            <p class="text-lg font-medium">Select a release</p>
-            <p class="text-sm">Click on a release from the list to view its details.</p>
+          <InfiniteReleaseList
+            :repository="selectedRepository"
+            @select-release="handleSelectRelease"
+          />
+        </div>
+
+        <div class="sticky top-[calc(var(--header-height)+1rem)] max-h-[calc(100vh-var(--header-height)-2rem)] max-lg:hidden lg:col-span-5">
+          <div class="h-full">
+            <div v-if="selectedRelease" class="flex h-full flex-col bg-default">
+              <h2 class="mb-4 text-xl font-semibold text-highlighted">
+                Release Details
+              </h2>
+              <ReleaseDetail
+                :release="selectedRelease"
+                class="overflow-y-auto"
+                @close="handleCloseDetail"
+                @open-git-hub="handleOpenGitHub"
+              />
+            </div>
+
+            <div v-else class="flex flex-col items-center justify-center gap-3 py-16 text-center text-muted">
+              <UIcon name="i-lucide-mouse-pointer-click" class="size-12" />
+              <p class="text-lg font-medium">Select a release</p>
+              <p class="text-sm">Click on a release from the list to view its details.</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <GetStarted
-      v-else
-      @search="handleSearch"
-    />
+      <GetStarted
+        v-else
+        @search="handleSearch"
+      />
+    </ClientOnly>
 
     <ReleaseModal
       v-if="selectedRelease"
