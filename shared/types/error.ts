@@ -1,6 +1,5 @@
-export interface ServerError {
+export interface ServerErrorData {
   statusCode: number;
   statusMessage: string;
   message: string;
-  data?: any;
 }

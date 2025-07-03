@@ -72,7 +72,11 @@ export function useGitHubReleases() {
 
 function getErrorMessage(error: unknown): string {
   if (error && typeof error === 'object' && 'data' in error) {
-    return (error as FetchError<ServerError>).message;
+    const fetchError = error as FetchError<ServerErrorData>;
+    if (typeof fetchError.data?.message === 'string') {
+      return fetchError.data.message;
+    }
   }
+
   return 'An unexpected error occurred. Please try again.';
 }
