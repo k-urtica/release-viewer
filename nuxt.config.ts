@@ -66,10 +66,7 @@ export default defineNuxtConfig({
 
   routeRules: {
     '/api/releases/**': {
-      cors: true,
-      headers: {
-        'Cache-Control': 'public, max-age=300, s-maxage=21600',
-      },
+      headers: { 'Cache-Control': 'public, max-age=600', },
     },
   },
 
