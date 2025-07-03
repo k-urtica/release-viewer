@@ -29,11 +29,6 @@ useInfiniteScroll(
 function selectRelease(release: GitHubRelease) {
   emit('selectRelease', release);
 }
-
-function openGitHubRelease(repository: RepositoryInfo, release: GitHubRelease) {
-  const url = `https://github.com/${repository.owner}/${repository.name}/releases/tag/${release.tag}`;
-  window.open(url, '_blank', 'noopener,noreferrer');
-}
 </script>
 
 <template>
