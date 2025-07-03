@@ -1,4 +1,4 @@
-import type { Octokit, RestEndpointMethodTypes } from '@octokit/rest';
+import type { RestEndpointMethodTypes } from '@octokit/rest';
 
 const DEFAULT_PER_PAGE = 30;
 const MIN_PER_PAGE = 1;
@@ -54,13 +54,12 @@ export function transformOctokitRelease(octokitRelease: OctokitRelease): GitHubR
  * Fetch GitHub releases with pagination
  */
 export async function fetchGitHubReleases(
-  octokit: Octokit,
   owner: string,
   repo: string,
   page: number,
   perPage: number
 ): Promise<{ releases: GitHubRelease[]; pagination: PaginationInfo }> {
-  const response = await octokit.rest.repos.listReleases({
+  const response = await useOctokit().rest.repos.listReleases({
     owner,
     repo,
     page,
