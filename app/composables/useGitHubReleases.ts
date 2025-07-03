@@ -1,12 +1,5 @@
+import type { FetchError } from 'ofetch';
 import type { GitHubRelease, PaginationInfo, ReleasesResponse, RepositoryInfo } from '~~/shared/types/github';
-
-const ERROR_MESSAGES = {
-  NOT_FOUND: 'Repository not found. Please check the repository name.',
-  RATE_LIMIT: 'API rate limit exceeded. Please try again later.',
-  SERVER_ERROR: 'Server error occurred. Please try again later.',
-  NETWORK_ERROR: 'Network error. Please check your connection.',
-  UNKNOWN: 'An unexpected error occurred. Please try again.',
-} as const;
 
 /**
  * Composable for fetching GitHub release information with pagination support
@@ -38,7 +31,7 @@ export function useGitHubReleases() {
 
       releases.value = append ? [...releases.value, ...data.releases] : data.releases;
       pagination.value = data.pagination;
-    } catch (err: any) {
+    } catch (err) {
       console.error('Failed to fetch releases:', err);
       error.value = getErrorMessage(err);
       if (!append) releases.value = [];
@@ -66,19 +59,6 @@ export function useGitHubReleases() {
     await load(repository, 1);
   }
 
-  function getErrorMessage(err: any): string {
-    const status = err?.status;
-
-    if (status === 404) return ERROR_MESSAGES.NOT_FOUND;
-    if (status === 403) return ERROR_MESSAGES.RATE_LIMIT;
-    if (status >= 500) return ERROR_MESSAGES.SERVER_ERROR;
-    if (err?.code === 'NETWORK_ERR' || err?.name === 'NetworkError') {
-      return ERROR_MESSAGES.NETWORK_ERROR;
-    }
-
-    return err instanceof Error ? err.message : ERROR_MESSAGES.UNKNOWN;
-  }
-
   return {
     releases: readonly(releases),
     loading: readonly(loading),
@@ -88,4 +68,11 @@ export function useGitHubReleases() {
     loadMore,
     reset,
   };
+}
+
+function getErrorMessage(error: unknown): string {
+  if (error && typeof error === 'object' && 'data' in error) {
+    return (error as FetchError<ServerError>).message;
+  }
+  return 'An unexpected error occurred. Please try again.';
 }
