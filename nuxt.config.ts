@@ -83,8 +83,7 @@ export default defineNuxtConfig({
     preset: 'cloudflare-module',
     prerender: {
       autoSubfolderIndex: false,
-      crawlLinks: true,
-      routes: ['/', '/sitemap.xml', '/robots.txt'],
+      routes: ['/sitemap.xml', '/robots.txt'],
     },
 
   },
