@@ -68,7 +68,7 @@ Release Viewer helps you easily browse and explore release information from any 
 - **TypeScript** - Type-safe development
 - **NuxtUI v3** - Modern UI component library with semantic theming
 - **VueUse** - Vue composition utilities
-- **unjs/ungh** - GitHub API client
+- **@octokit/rest** - Official GitHub REST API client
 - **Tailwind CSS** - Utility-first CSS framework
 
 ## 💭 Motivation
@@ -77,8 +77,9 @@ Honestly, I just needed this for work.
 
 ## 🎯 Future Plans
 
-- **✅ Pagination for large repositories** - Implemented with infinite scroll
-- Remove ungh and use direct GitHub API access with personal tokens
-- Search suggestions and autocomplete
-- Enhanced filtering and sorting options
-- UI improvements and accessibility enhancements
+| Status | Feature | Description |
+|--------|---------|-------------|
+| ✅ | Pagination for large repositories | Implemented with infinite scroll |
+| ✅ | Direct GitHub API access | Implemented with @octokit/rest |
+| 🔄 | Search suggestions and autocomplete from npm registry | Smart search with package suggestions |
+| 🔄 | UI improvements and accessibility enhancements | Better UX and a11y support |
