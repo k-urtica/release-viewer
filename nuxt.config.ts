@@ -65,6 +65,8 @@ export default defineNuxtConfig({
     '/api/releases/**': {
       headers: { 'Cache-Control': 'public, max-age=600', },
     },
+    '/repo/**': { isr: 3600 },
+    '/': { prerender: true },
   },
 
   future: {
@@ -81,8 +83,7 @@ export default defineNuxtConfig({
     preset: 'cloudflare-module',
     prerender: {
       autoSubfolderIndex: false,
-      crawlLinks: true,
-      routes: ['/', '/sitemap.xml', '/robots.txt'],
+      routes: ['/sitemap.xml', '/robots.txt'],
     },
   },
 

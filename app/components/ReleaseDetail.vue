@@ -73,7 +73,7 @@ useHead(() => ({
     <div class="mt-6 overflow-hidden rounded-lg ring-1 ring-muted/40">
       <section
         class="markdown-body px-4 py-6"
-        v-html="sanitizeHtml(release.html)"
+        v-html="release.html"
       />
     </div>
   </article>

@@ -1,35 +1,7 @@
 <script setup lang="ts">
-const ownerQuery = useRouteQuery<string>('owner', '');
-const repoQuery = useRouteQuery<string>('repo', '');
 const inputValue = ref('');
-const currentRepository = ref<RepositoryInfo | null>(null);
-const selectedRelease = shallowRef<GitHubRelease | null>(null);
-const openReleaseModal = ref(false);
-
 const toast = useToast();
-const isMobile = useAppBreakpoints().smaller('lg');
 const { searchHistory, addToHistory } = useSearchHistory();
-
-function setRepository(repo: RepositoryInfo) {
-  inputValue.value = `${repo.owner}/${repo.name}`;
-  currentRepository.value = repo;
-}
-
-function clearRepository() {
-  inputValue.value = '';
-  currentRepository.value = null;
-  selectedRelease.value = null;
-}
-
-onMounted(() => {
-  watch([ownerQuery, repoQuery], ([owner, repo]) => {
-    if (owner && repo) {
-      setRepository({ owner, name: repo });
-    } else {
-      clearRepository();
-    }
-  }, { immediate: true });
-});
 
 function handleSubmit(inputValue: string) {
   const repository = parseRepository(inputValue);
@@ -45,40 +17,14 @@ function handleSubmit(inputValue: string) {
   handleSearch(repository);
 }
 
-function handleSearch(repo: RepositoryInfo) {
-  clearSelection();
-  setRepository(repo);
-
-  ownerQuery.value = repo.owner;
-  repoQuery.value = repo.name;
-
+async function handleSearch(repo: RepositoryInfo) {
   addToHistory(repo);
-}
-
-function handleSelectRelease(release: GitHubRelease) {
-  selectedRelease.value = release;
-  if (isMobile.value) {
-    openReleaseModal.value = true;
-  }
-}
-
-function handleCloseDetail() {
-  clearSelection();
-}
-
-function handleOpenGitHub(release: GitHubRelease) {
-  if (currentRepository.value) {
-    openGitHubRelease(currentRepository.value, release);
-  }
-}
-
-function clearSelection() {
-  selectedRelease.value = null;
-  openReleaseModal.value = false;
+  await navigateTo(`/repo/${repo.owner}/${repo.name}`);
 }
 
 useSeoMeta({
   title: 'Release Viewer - Browse GitHub Repository Releases',
+  description: 'Browse GitHub repository release notes with a clean, easy-to-use interface. Enter a repository name or URL to view release information.'
 });
 </script>
 
@@ -109,55 +55,6 @@ useSeoMeta({
       </ClientOnly>
     </div>
 
-    <ClientOnly>
-      <div v-if="currentRepository" class="mt-8 grid grid-cols-1 gap-8 border-t pt-8 lg:grid-cols-9">
-        <div class="space-y-4 lg:col-span-4">
-          <div class="flex items-center justify-between gap-2">
-            <h2 class="text-xl font-semibold text-highlighted">
-              {{ `${currentRepository.owner}/${currentRepository.name}` }}
-            </h2>
-          </div>
-
-          <InfiniteReleaseList
-            :repository="currentRepository"
-            @select-release="handleSelectRelease"
-          />
-        </div>
-
-        <div class="sticky top-[calc(var(--header-height)+1rem)] max-h-[calc(100vh-var(--header-height)-2rem)] max-lg:hidden lg:col-span-5">
-          <div class="h-full">
-            <div v-if="selectedRelease" class="flex h-full flex-col bg-default">
-              <h2 class="mb-4 text-xl font-semibold text-highlighted">
-                Release Details
-              </h2>
-              <ReleaseDetail
-                :release="selectedRelease"
-                class="overflow-y-auto"
-                @close="handleCloseDetail"
-                @open-git-hub="handleOpenGitHub"
-              />
-            </div>
-
-            <div v-else class="flex flex-col items-center justify-center gap-3 py-16 text-center text-muted">
-              <UIcon name="i-lucide-mouse-pointer-click" class="size-12" />
-              <p class="text-lg font-medium">Select a release</p>
-              <p class="text-sm">Click on a release from the list to view its details.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <GetStarted
-        v-else
-        @search="handleSearch"
-      />
-    </ClientOnly>
-
-    <ReleaseModal
-      v-if="selectedRelease"
-      v-model="openReleaseModal"
-      :release="selectedRelease"
-      @open-git-hub="handleOpenGitHub"
-    />
+    <GetStarted @search="handleSearch" />
   </UContainer>
 </template>

@@ -90,7 +90,7 @@ function selectRelease(release: GitHubRelease) {
         <div v-if="release.html" class="mt-4 rounded-lg bg-muted/80 p-4">
           <div
             class="pointer-events-none line-clamp-5 text-sm text-toned"
-            v-html="sanitizeHtml(release.html)"
+            v-html="release.html"
           />
         </div>
       </a>
