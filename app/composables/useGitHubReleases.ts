@@ -1,5 +1,4 @@
 import type { FetchError } from 'ofetch';
-import type { GitHubRelease, PaginationInfo, ReleasesResponse, RepositoryInfo } from '~~/shared/types/github';
 
 /**
  * Composable for fetching GitHub release information with pagination support
@@ -22,14 +21,16 @@ export function useGitHubReleases() {
     error.value = null;
 
     try {
-      const data = await $fetch<ReleasesResponse>(`/api/releases/${repository.owner}/${repository.name}`, {
+      const data = await $fetch<ReleasesResponse>(`/api/releases/${repository.owner}/${repository.repo}`, {
         query: {
           page,
           per_page: pagination.value.perPage,
         },
       });
 
-      releases.value = append ? [...releases.value, ...data.releases] : data.releases;
+      const sanitizedReleases = data.releases.map((r) => ({ ...r, html: sanitizeHtml(r.html) }));
+
+      releases.value = append ? [...releases.value, ...sanitizedReleases] : sanitizedReleases;
       pagination.value = data.pagination;
     } catch (err) {
       console.error('Failed to fetch releases:', err);

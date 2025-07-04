@@ -18,7 +18,13 @@
 
       <div class="flex items-center gap-2.5">
         <ThemeSwitcher />
-        <UButton icon="i-mdi-github" size="sm" variant="outline" to="https://github.com/k-urtica/release-viewer" target="_blank" />
+        <UButton
+          icon="i-mdi-github"
+          size="sm"
+          variant="outline"
+          to="https://github.com/k-urtica/release-viewer"
+          target="_blank"
+        />
       </div>
     </UContainer>
   </header>

@@ -10,7 +10,7 @@ export function parseRepository(input: string): RepositoryInfo | null {
       return null;
     }
 
-    return { owner: parsed.owner, name: parsed.name };
+    return { owner: parsed.owner, repo: parsed.name };
   } catch (e) {
     console.error(e);
     return null;
@@ -18,6 +18,6 @@ export function parseRepository(input: string): RepositoryInfo | null {
 }
 
 export function openGitHubRelease(repository: RepositoryInfo, release: GitHubRelease) {
-  const url = `https://github.com/${repository.owner}/${repository.name}/releases/tag/${release.tag}`;
+  const url = `https://github.com/${repository.owner}/${repository.repo}/releases/tag/${release.tag}`;
   window.open(url, '_blank', 'noopener');
 }

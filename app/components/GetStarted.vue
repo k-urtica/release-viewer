@@ -4,10 +4,10 @@ defineEmits<{
 }>();
 
 const POPULAR_REPOSITORIES: RepositoryInfo[] = [
-  { owner: 'microsoft', name: 'vscode' },
-  { owner: 'facebook', name: 'react' },
-  { owner: 'nuxt', name: 'nuxt' },
-  { owner: 'vercel', name: 'next.js' },
+  { owner: 'microsoft', repo: 'vscode' },
+  { owner: 'facebook', repo: 'react' },
+  { owner: 'nuxt', repo: 'nuxt' },
+  { owner: 'vercel', repo: 'next.js' },
 ];
 </script>
 
@@ -30,8 +30,8 @@ const POPULAR_REPOSITORIES: RepositoryInfo[] = [
       <div class="flex flex-wrap justify-center gap-2">
         <UButton
           v-for="repo in POPULAR_REPOSITORIES"
-          :key="`${repo.owner}/${repo.name}`"
-          :label="`${repo.owner}/${repo.name}`"
+          :key="`${repo.owner}/${repo.repo}`"
+          :label="`${repo.owner}/${repo.repo}`"
           color="neutral"
           variant="soft"
           size="sm"
