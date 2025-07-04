@@ -2,10 +2,10 @@
 const route = useRoute('repo-owner-repo');
 
 const owner = route.params.owner;
-const name = route.params.repo;
+const repo = route.params.repo;
 
-const currentRepository = ref<RepositoryInfo>({ owner, name });
-const inputValue = ref(`${owner}/${name}`);
+const currentRepository = ref<RepositoryInfo>({ owner, repo });
+const inputValue = ref(`${owner}/${repo}`);
 const selectedRelease = shallowRef<GitHubRelease | null>(null);
 const openReleaseModal = ref(false);
 
@@ -29,7 +29,7 @@ function handleSubmit(inputValue: string) {
 
 async function handleSearch(repo: RepositoryInfo) {
   addToHistory(repo);
-  await navigateTo(`/repo/${repo.owner}/${repo.name}`);
+  await navigateTo(`/repo/${repo.owner}/${repo.repo}`);
 }
 
 function handleSelectRelease(release: GitHubRelease) {
@@ -53,8 +53,8 @@ function clearSelection() {
 }
 
 useSeoMeta({
-  title: `${owner}/${name} Releases - Release Viewer`,
-  description: `Browse release notes for ${owner}/${name} GitHub repository with a clean, easy-to-use interface.`,
+  title: `${owner}/${repo} Releases - Release Viewer`,
+  description: `Browse release notes for ${owner}/${repo} GitHub repository with a clean, easy-to-use interface.`,
 });
 </script>
 
@@ -82,7 +82,7 @@ useSeoMeta({
         <div class="space-y-4 lg:col-span-4">
           <div class="flex items-center justify-between gap-2">
             <h2 class="text-xl font-semibold text-highlighted">
-              {{ `${currentRepository.owner}/${currentRepository.name}` }}
+              {{ `${currentRepository.owner}/${currentRepository.repo}` }}
             </h2>
           </div>
 

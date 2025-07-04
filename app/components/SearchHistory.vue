@@ -15,7 +15,7 @@ defineEmits<{
       <UButton
         v-for="(repo, idx) in searchHistory"
         :key="idx"
-        :label="`${repo.owner}/${repo.name}`"
+        :label="`${repo.owner}/${repo.repo}`"
         color="neutral"
         variant="soft"
         size="xs"

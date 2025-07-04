@@ -21,7 +21,7 @@ export function useGitHubReleases() {
     error.value = null;
 
     try {
-      const data = await $fetch<ReleasesResponse>(`/api/releases/${repository.owner}/${repository.name}`, {
+      const data = await $fetch<ReleasesResponse>(`/api/releases/${repository.owner}/${repository.repo}`, {
         query: {
           page,
           per_page: pagination.value.perPage,

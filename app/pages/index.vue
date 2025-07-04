@@ -19,7 +19,7 @@ function handleSubmit(inputValue: string) {
 
 async function handleSearch(repo: RepositoryInfo) {
   addToHistory(repo);
-  await navigateTo(`/repo/${repo.owner}/${repo.name}`);
+  await navigateTo(`/repo/${repo.owner}/${repo.repo}`);
 }
 
 useSeoMeta({
