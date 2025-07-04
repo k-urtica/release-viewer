@@ -27,6 +27,7 @@ Release Viewer helps you easily browse and explore release information from any 
 
 - Search repositories using either `owner/repo` format or full GitHub URLs
 - Search history with quick access to recently viewed repositories
+- **Direct Repository Links** - URLs like `/repo/microsoft/vscode` for direct access
 - URL synchronization - share direct links to specific repositories
 - Popular repositories suggestions to get started quickly
 
@@ -55,7 +56,7 @@ Release Viewer helps you easily browse and explore release information from any 
 
 ### Tips
 
-- **Direct URLs**: You can bookmark or share URLs with specific repositories
+- **Direct URLs**: You can bookmark or share URLs with specific repositories (e.g., `/repo/microsoft/vscode`)
 - **Search History**: Your recent searches are saved for quick access
 - **Popular Repos**: Try the suggested popular repositories to explore the tool
 - **Mobile Friendly**: Works great on phones and tablets
@@ -67,9 +68,8 @@ Release Viewer helps you easily browse and explore release information from any 
 - **Nuxt 4** - Full-stack Vue.js framework with compatibility version 4
 - **TypeScript** - Type-safe development
 - **NuxtUI v3** - Modern UI component library with semantic theming
-- **VueUse** - Vue composition utilities
-- **@octokit/rest** - Official GitHub REST API client
 - **Tailwind CSS** - Utility-first CSS framework
+- **Cloudflare** - Hosting and deployment platform
 
 ## 💭 Motivation
 
