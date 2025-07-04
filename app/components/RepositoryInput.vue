@@ -9,12 +9,12 @@ withDefaults(defineProps<{
 });
 
 const emit = defineEmits<{
-  search: [repository: RepositoryInfo];
+  submit: [value: string];
 }>();
 
 const error = ref<string>();
 
-function handleSearch() {
+function handleSubmit() {
   error.value = undefined;
 
   if (!inputValue.value.trim()) {
@@ -22,18 +22,12 @@ function handleSearch() {
     return;
   }
 
-  const repository = parseRepository(inputValue.value);
-  if (!repository) {
-    error.value = 'Please enter a valid repository format (e.g., owner/repo)';
-    return;
-  }
-
-  emit('search', repository);
+  emit('submit', inputValue.value.trim());
 }
 
 function handleKeydown(event: KeyboardEvent) {
   if (event.key === 'Enter') {
-    handleSearch();
+    handleSubmit();
   }
 }
 </script>
@@ -58,7 +52,7 @@ function handleKeydown(event: KeyboardEvent) {
         color="primary"
         size="lg"
         icon="i-lucide-search"
-        @click="handleSearch"
+        @click="handleSubmit"
       >
         Search
       </UButton>

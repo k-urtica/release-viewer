@@ -1,6 +1,6 @@
 const SITE_URL = 'https://release-viewer.web-toolbox.dev';
-const SITE_TITLE = 'Release Viewer - GitHub Release Notes Tool';
-const SITE_DESCRIPTION = 'A web tool to browse GitHub repository release notes with a clean, easy-to-use interface';
+const SITE_TITLE = 'Release Viewer - Browse GitHub Repository Releases';
+const SITE_DESCRIPTION = 'Browse GitHub repository release notes with a clean, easy-to-use interface. Enter a repository name or URL to view release information.';
 
 export default defineNuxtConfig({
   modules: [
@@ -23,13 +23,10 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: SITE_TITLE,
-      titleTemplate: '%s',
       htmlAttrs: {
         lang: 'en',
       },
       meta: [
-        { name: 'description', content: SITE_DESCRIPTION },
         { property: 'og:title', content: SITE_TITLE },
         { property: 'og:description', content: SITE_DESCRIPTION },
         { property: 'og:type', content: 'website' },
@@ -77,15 +74,16 @@ export default defineNuxtConfig({
   experimental: {
     typedPages: true,
   },
+
   compatibilityDate: '2025-05-15',
 
   nitro: {
     preset: 'cloudflare-module',
     prerender: {
       autoSubfolderIndex: false,
-      routes: ['/sitemap.xml', '/robots.txt'],
+      crawlLinks: true,
+      routes: ['/', '/sitemap.xml', '/robots.txt'],
     },
-
   },
 
   vite: {

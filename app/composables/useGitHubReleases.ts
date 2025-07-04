@@ -1,5 +1,4 @@
 import type { FetchError } from 'ofetch';
-import type { GitHubRelease, PaginationInfo, ReleasesResponse, RepositoryInfo } from '~~/shared/types/github';
 
 /**
  * Composable for fetching GitHub release information with pagination support

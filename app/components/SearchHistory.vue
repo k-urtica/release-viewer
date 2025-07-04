@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineProps<{
-  searchHistory: RepositoryInfo[];
+  searchHistory: readonly RepositoryInfo[];
 }>();
 
 defineEmits<{
