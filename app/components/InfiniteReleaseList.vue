@@ -55,7 +55,7 @@ function selectRelease(release: GitHubRelease) {
       >
         <div class="space-y-3 border-b pb-2">
           <div class="flex flex-wrap items-center gap-2">
-            <h3 class="shrink-0 text-xl font-semibold text-highlighted">
+            <h3 class="text-lg font-semibold text-highlighted">
               {{ release.name || release.tag }}
             </h3>
             <UBadge
