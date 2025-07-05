@@ -21,9 +21,9 @@
   --ui-radius: 0.3rem;
 
   --header-height: 64px;
+  --footer-height: 48px;
 
-  --font-family:
-    Inter, 'Noto Sans JP', '-apple-system', BlinkMacSystemFont, Helvetica, Arial, メイリオ, Meiryo, sans-serif;
+  --font-family: 'Oxanium', 'Noto Sans JP', '-apple-system', BlinkMacSystemFont, Helvetica, Arial, Meiryo, sans-serif;
 
   scroll-behavior: smooth;
 }

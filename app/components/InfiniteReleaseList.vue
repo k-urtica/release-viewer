@@ -46,54 +46,14 @@ function selectRelease(release: GitHubRelease) {
     />
 
     <div v-else-if="releases.length > 0" class="space-y-4">
-      <a
+      <ReleaseListItem
         v-for="release in releases"
         :key="release.id"
-        href="#"
-        class="block rounded-lg border px-4 py-5 transition-colors hover:border-primary hover:shadow-md"
-        @click.prevent="selectRelease(release)"
-      >
-        <div class="space-y-3 border-b pb-2">
-          <div class="flex flex-wrap items-center gap-2">
-            <h3 class="text-lg font-semibold text-highlighted">
-              {{ release.name || release.tag }}
-            </h3>
-            <UBadge
-              v-if="release.prerelease"
-              color="warning"
-              variant="soft"
-              size="sm"
-              label="Pre-release"
-            />
-            <UBadge
-              v-if="release.draft"
-              color="neutral"
-              variant="soft"
-              size="sm"
-              label="Draft"
-            />
-
-            <UButton
-              v-if="repository"
-              icon="i-lucide-external-link"
-              color="neutral"
-              variant="outline"
-              size="sm"
-              label="GitHub"
-              class="ms-auto"
-              @click.stop="openGitHubRelease(repository, release)"
-            />
-          </div>
-          <ReleaseMetadata :release="release" />
-        </div>
-
-        <div v-if="release.html" class="mt-4 rounded-lg bg-muted/80 p-4">
-          <div
-            class="pointer-events-none line-clamp-5 text-sm text-toned"
-            v-html="release.html"
-          />
-        </div>
-      </a>
+        :release="release"
+        :repository="repository"
+        @select="selectRelease"
+        @open-git-hub="openGitHubRelease"
+      />
 
       <div v-if="loading" class="space-y-3">
         <USkeleton v-for="i in 3" :key="i" class="h-32 w-full" />

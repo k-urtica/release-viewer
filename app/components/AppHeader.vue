@@ -1,5 +1,5 @@
 <template>
-  <header class="sticky top-0 z-50 border-b border-muted/40 bg-default/60 backdrop-blur-sm">
+  <header class="fixed inset-x-0 top-0 z-50 border-b border-muted/40 bg-default/60 backdrop-blur-sm">
     <UContainer class="flex h-(--header-height) items-center justify-between">
       <div class="flex items-center gap-3">
         <UIcon
@@ -7,7 +7,7 @@
           class="size-8 text-primary"
         />
         <NuxtLink to="/">
-          <h1 class="text-lg font-black text-highlighted">
+          <h1 class="text-lg font-black tracking-tight text-highlighted">
             Release Viewer
           </h1>
           <p class="text-xs text-muted">

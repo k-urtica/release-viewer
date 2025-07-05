@@ -60,15 +60,7 @@ useSeoMeta({
 
 <template>
   <UContainer class="pt-10 pb-20">
-    <div class="space-y-4 text-center">
-      <h1 class="text-2xl font-black text-highlighted lg:text-4xl">
-        Release Viewer
-      </h1>
-      <p class="mx-auto max-w-2xl text-sm text-muted lg:text-lg">
-        Browse GitHub repository release notes with a clean, easy-to-use interface.
-        Enter a repository name or URL to view release information.
-      </p>
-    </div>
+    <HeroTitle />
 
     <div class="mx-auto mt-8 max-w-2xl">
       <RepositoryInput
@@ -81,7 +73,8 @@ useSeoMeta({
       <div class="mt-8 grid grid-cols-1 gap-8 border-t pt-8 lg:grid-cols-9">
         <div class="space-y-4 lg:col-span-4">
           <div class="flex items-center justify-between gap-2">
-            <h2 class="text-xl font-semibold text-highlighted">
+            <h2 class="flex items-center gap-2 text-xl font-semibold text-highlighted">
+              <UIcon name="i-lucide-github" />
               {{ `${currentRepository.owner}/${currentRepository.repo}` }}
             </h2>
           </div>
