@@ -81,7 +81,8 @@ useSeoMeta({
       <div class="mt-8 grid grid-cols-1 gap-8 border-t pt-8 lg:grid-cols-9">
         <div class="space-y-4 lg:col-span-4">
           <div class="flex items-center justify-between gap-2">
-            <h2 class="text-xl font-semibold text-highlighted">
+            <h2 class="flex items-center gap-2 text-xl font-semibold text-highlighted">
+              <UIcon name="i-lucide-github" />
               {{ `${currentRepository.owner}/${currentRepository.repo}` }}
             </h2>
           </div>

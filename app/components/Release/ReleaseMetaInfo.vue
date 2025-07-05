@@ -6,7 +6,8 @@ const props = defineProps<{
 const timeAgo = computed(() =>
   props.release.publishedAt
     ? useTimeAgo(props.release.publishedAt)
-    : '');
+    : ''
+);
 </script>
 
 <template>
@@ -15,14 +16,15 @@ const timeAgo = computed(() =>
       <UIcon name="i-lucide-tag" class="h-4 w-4" />
       <span>{{ release.tag }}</span>
     </div>
+
     <div class="flex items-center gap-1">
       <UIcon name="i-lucide-calendar" class="h-4 w-4" />
       <span>{{ release.publishedAt && formatDate(release.publishedAt) }}</span>
       <UBadge size="sm" color="neutral" variant="soft">{{ timeAgo }}</UBadge>
     </div>
+
     <div class="flex items-center gap-1">
       <UAvatar
-        v-if="release.authorAvatarUrl"
         :src="release.authorAvatarUrl"
         icon="i-lucide-user"
         size="2xs"
