@@ -22,7 +22,7 @@ const menuItems = computed(() => {
   if (isGitHubUrl(searchTerm.value.trim())) return [];
 
   return suggestions.value.map<CustomInputItem>((pkg) => ({
-    label: pkg.name,
+    label: `${pkg.name} - ${pkg.owner}/${pkg.repo}`,
     value: pkg.repositoryUrl,
     description: pkg.description,
     icon: 'i-lucide-folder-git'
@@ -61,13 +61,14 @@ function handleSelect({ value }: CustomInputItem) {
       v-model:search-term="searchTerm"
       :loading="isLoading"
       :items="menuItems"
-      :create-item="{ position: 'bottom', when: 'always' }"
+      :create-item="{ position: 'bottom', when: 'empty' }"
       icon="i-lucide-search"
       trailing-icon=""
       placeholder="Enter GitHub repository URL or search by npm package name"
       size="xl"
       variant="outline"
       ignore-filter
+      autofocus
       :ui="{ itemLabel: 'w-full', itemLeadingIcon: 'size-5' }"
       class="w-full"
       @update:model-value="handleSelect"
