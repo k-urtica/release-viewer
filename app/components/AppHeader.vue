@@ -24,6 +24,7 @@
           variant="outline"
           to="https://github.com/k-urtica/release-viewer"
           target="_blank"
+          aria-label="GitHub repository"
         />
       </div>
     </UContainer>
