@@ -30,7 +30,7 @@ useHead(() => ({
   <article class="rounded-lg border p-6">
     <header class="space-y-3 border-b pb-2">
       <div class="flex flex-wrap items-center gap-3">
-        <h3 class="text-2xl font-bold text-highlighted">
+        <h3 class="text-xl font-bold text-highlighted">
           {{ release.name || release.tag }}
         </h3>
         <div class="flex gap-2">

@@ -1,7 +1,12 @@
 <script setup lang="ts">
-defineProps<{
+const props = defineProps<{
   release: GitHubRelease;
 }>();
+
+const timeAgo = computed(() =>
+  props.release.publishedAt
+    ? useTimeAgo(props.release.publishedAt)
+    : '');
 </script>
 
 <template>
@@ -13,6 +18,7 @@ defineProps<{
     <div class="flex items-center gap-1">
       <UIcon name="i-lucide-calendar" class="h-4 w-4" />
       <span>{{ release.publishedAt && formatDate(release.publishedAt) }}</span>
+      <UBadge size="sm" color="neutral" variant="soft">{{ timeAgo }}</UBadge>
     </div>
     <div class="flex items-center gap-1">
       <UAvatar
