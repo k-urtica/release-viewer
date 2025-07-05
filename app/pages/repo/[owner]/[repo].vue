@@ -60,15 +60,7 @@ useSeoMeta({
 
 <template>
   <UContainer class="pt-10 pb-20">
-    <div class="space-y-4 text-center">
-      <h1 class="text-2xl font-black text-highlighted lg:text-4xl">
-        Release Viewer
-      </h1>
-      <p class="mx-auto max-w-2xl text-sm text-muted lg:text-lg">
-        Browse GitHub repository release notes with a clean, easy-to-use interface.
-        Enter a repository name or URL to view release information.
-      </p>
-    </div>
+    <HeroTitle />
 
     <div class="mx-auto mt-8 max-w-2xl">
       <RepositoryInput

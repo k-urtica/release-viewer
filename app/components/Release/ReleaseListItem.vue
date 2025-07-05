@@ -16,7 +16,7 @@ defineEmits<{
   <a
     href="#"
     :aria-label="`View details for release ${release.name || release.tag}`"
-    class="block rounded-lg border px-4 py-5 transition-colors hover:border-primary hover:shadow-md"
+    class="block rounded-lg border bg-default px-4 py-5 transition-colors hover:border-primary hover:shadow-md"
     @click.prevent="$emit('select', release)"
   >
     <ReleaseHeader :release="release" class="border-b pb-2">

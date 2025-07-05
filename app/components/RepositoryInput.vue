@@ -69,7 +69,7 @@ function handleSelect({ value }: CustomInputItem) {
       variant="outline"
       ignore-filter
       autofocus
-      :ui="{ itemLabel: 'w-full', itemLeadingIcon: 'size-5' }"
+      :ui="{ base: 'rounded-lg py-3', itemLabel: 'w-full', itemLeadingIcon: 'size-5' }"
       class="w-full"
       @update:model-value="handleSelect"
       @update:search-term="handleSearchTermChange"

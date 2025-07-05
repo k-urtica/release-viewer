@@ -3,6 +3,14 @@ const inputValue = ref('');
 const toast = useToast();
 const { searchHistory, addToHistory } = useSearchHistory();
 
+const POPULAR_REPOSITORIES: RepositoryInfo[] = [
+  { owner: 'microsoft', repo: 'vscode' },
+  { owner: 'facebook', repo: 'react' },
+  { owner: 'nuxt', repo: 'nuxt' },
+  { owner: 'vercel', repo: 'next.js' },
+  { owner: 'vitejs', repo: 'vite' }
+];
+
 function handleSubmit(inputValue: string) {
   const repository = parseRepository(inputValue);
   if (!repository) {
@@ -29,32 +37,51 @@ useSeoMeta({
 </script>
 
 <template>
-  <UContainer class="pt-10 pb-20">
-    <div class="space-y-4 text-center">
-      <h1 class="text-2xl font-black text-highlighted lg:text-4xl">
-        Release Viewer
-      </h1>
-      <p class="mx-auto max-w-2xl text-sm text-muted lg:text-lg">
-        Browse GitHub repository release notes with a clean, easy-to-use interface.
-        Enter a repository name or URL to view release information.
-      </p>
-    </div>
+  <div class="flex min-h-[calc(100dvh-var(--header-height))] items-center justify-center pb-(--footer-height)">
+    <UContainer class="max-w-4xl pb-10">
+      <HeroTitle />
 
-    <div class="mx-auto mt-8 max-w-2xl">
-      <RepositoryInput
-        v-model="inputValue"
-        @submit="handleSubmit"
-      />
-
-      <ClientOnly>
-        <SearchHistory
-          :search-history="searchHistory"
-          class="mt-4"
-          @click="handleSearch"
+      <div class="mx-auto mt-8 max-w-2xl">
+        <RepositoryInput
+          v-model="inputValue"
+          @submit="handleSubmit"
         />
-      </ClientOnly>
-    </div>
 
-    <GetStarted @search="handleSearch" />
-  </UContainer>
+        <div class="mt-4">
+          <h3 class="text-center text-lg font-medium">
+            Popular Repositories
+          </h3>
+          <div class="mt-1 flex flex-wrap justify-center gap-2">
+            <UButton
+              v-for="repo in POPULAR_REPOSITORIES"
+              :key="`${repo.owner}/${repo.repo}`"
+              :label="`${repo.owner}/${repo.repo}`"
+              color="neutral"
+              variant="soft"
+              size="sm"
+              :aria-label="`Open ${repo.owner}/${repo.repo}`"
+              @click="handleSearch(repo)"
+            />
+          </div>
+        </div>
+
+        <ClientOnly>
+          <SearchHistory
+            :search-history="searchHistory"
+            class="mt-8"
+            @click="handleSearch"
+          />
+        </ClientOnly>
+      </div>
+    </UContainer>
+
+    <footer class="fixed inset-x-0 bottom-0 h-(--footer-height) border-t border-muted/40 bg-default/60 backdrop-blur-xs">
+      <UContainer class="flex h-full items-center justify-center text-center">
+        <p class="text-sm text-muted">
+          Crafted with <span aria-label="love" role="img">💚</span> by
+          <NuxtLink to="https://github.com/k-urtica" target="_blank" class="underline">K</NuxtLink>
+        </p>
+      </UContainer>
+    </footer>
+  </div>
 </template>
