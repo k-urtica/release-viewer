@@ -13,6 +13,8 @@ const toast = useToast();
 const isMobile = useAppBreakpoints().smaller('lg');
 const { addToHistory } = useSearchHistory();
 
+const repositoryUrl = computed(() => `https://github.com/${currentRepository.value.owner}/${currentRepository.value.repo}`);
+
 function handleSubmit(inputValue: string) {
   const repository = parseRepository(inputValue);
   if (!repository) {
@@ -69,16 +71,32 @@ useSeoMeta({
       />
     </div>
 
-    <ClientOnly>
-      <div class="mt-8 grid grid-cols-1 gap-8 border-t pt-8 lg:grid-cols-9">
-        <div class="space-y-4 lg:col-span-4">
-          <div class="flex items-center justify-between gap-2">
-            <h2 class="flex items-center gap-2 text-xl font-semibold text-highlighted">
-              <UIcon name="i-lucide-github" />
-              {{ `${currentRepository.owner}/${currentRepository.repo}` }}
-            </h2>
-          </div>
+    <div class="mx-auto mt-10 text-center">
+      <div class="mx-auto flex max-w-2xl flex-col items-center gap-2 rounded-xl bg-muted/80 px-6 py-5 ring-1 ring-muted/40">
+        <div class="flex items-center gap-2">
+          <UIcon name="i-lucide-github" class="shrink-0 text-xl text-highlighted" />
+          <span class="text-2xl font-bold tracking-tight text-highlighted">
+            {{ `${currentRepository.owner}/${currentRepository.repo}` }}
+          </span>
+        </div>
+        <ULink
+          :to="repositoryUrl"
+          target="_blank"
+          aria-label="Open repository on GitHub"
+          class="inline-flex items-center gap-1 text-sm hover:underline"
+        >
+          <UIcon name="i-lucide-external-link" class="shrink-0 text-base" />
+          {{ repositoryUrl }}
+        </ULink>
+      </div>
+    </div>
 
+    <ClientOnly>
+      <div class="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-9">
+        <div class="lg:col-span-4">
+          <h3 class="mb-2 flex items-center gap-2 text-xl font-semibold text-highlighted">
+            Releases
+          </h3>
           <InfiniteReleaseList
             :repository="currentRepository"
             @select-release="handleSelectRelease"
@@ -88,9 +106,9 @@ useSeoMeta({
         <div class="sticky top-[calc(var(--header-height)+1rem)] max-h-[calc(100vh-var(--header-height)-2rem)] max-lg:hidden lg:col-span-5">
           <div class="h-full">
             <div v-if="selectedRelease" class="flex h-full flex-col bg-default">
-              <h2 class="mb-4 text-xl font-semibold text-highlighted">
+              <h3 class="mb-2 text-xl font-semibold text-highlighted">
                 Release Details
-              </h2>
+              </h3>
               <ReleaseDetail
                 :release="selectedRelease"
                 class="overflow-y-auto"
