@@ -6,6 +6,10 @@ A clean and intuitive web tool for browsing GitHub repository release notes.
 
 Release Viewer helps you easily browse and explore release information from any GitHub repository. Whether you're tracking updates across multiple projects or diving deep into specific release notes, this tool provides a streamlined experience for staying up-to-date with your favorite open source projects.
 
+## 🌐 Site URL
+
+[https://release-viewer.web-toolbox.dev/](https://release-viewer.web-toolbox.dev/)
+
 ## ✨ Key Features
 
 - **Release List**: Chronological view of all releases, with infinite scroll, tags, pre-release/beta identification, and direct GitHub links.
@@ -54,4 +58,5 @@ Honestly, I just needed this for work.
 | ✅ | Pagination for large repositories | Implemented with infinite scroll |
 | ✅ | Direct GitHub API access | Implemented with @octokit/rest |
 | ✅ | npm registry API suggestion UI | Type-safe suggestion of GitHub repositories from npm package names |
-| 🔄 | UI improvements and accessibility enhancements | Better UX and a11y support |
+| ✅ | UI improvements and accessibility enhancements | Better UX and a11y support |
+| 🔄 | API caching using Cache API | Improve performance and reduce API rate limits by caching responses with the Cache API |
