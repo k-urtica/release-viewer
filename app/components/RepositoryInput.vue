@@ -22,7 +22,7 @@ const menuItems = computed(() => {
   if (isGitHubUrl(searchTerm.value.trim())) return [];
 
   return suggestions.value.map<CustomInputItem>((pkg) => ({
-    label: `${pkg.name} - ${pkg.owner}/${pkg.repo}`,
+    label: `${pkg.name} - [${pkg.owner}/${pkg.repo}]`,
     value: pkg.repositoryUrl,
     description: pkg.description,
     icon: 'i-lucide-folder-git'

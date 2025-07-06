@@ -38,7 +38,7 @@ useSeoMeta({
 
 <template>
   <div class="flex min-h-[calc(100dvh-var(--header-height))] items-center justify-center pb-(--footer-height)">
-    <UContainer class="max-w-4xl pb-10">
+    <UContainer class="max-w-4xl pt-10 pb-20">
       <HeroTitle />
 
       <div class="mx-auto mt-8 max-w-2xl">

@@ -61,7 +61,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <UContainer class="pt-10 pb-20">
+  <UContainer class="pt-14 pb-20">
     <HeroTitle />
 
     <div class="mx-auto mt-8 max-w-2xl">
