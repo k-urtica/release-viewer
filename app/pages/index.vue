@@ -42,6 +42,7 @@ useSeoMeta({
 
       <div class="mx-auto mt-8 max-w-2xl">
         <RepositoryInput
+          autofocus
           @submit="handleSubmit"
         />
 
