@@ -1,5 +1,4 @@
 <script setup lang="ts">
-const inputValue = ref('');
 const toast = useToast();
 const { searchHistory, addToHistory } = useSearchHistory();
 
@@ -43,7 +42,6 @@ useSeoMeta({
 
       <div class="mx-auto mt-8 max-w-2xl">
         <RepositoryInput
-          v-model="inputValue"
           @submit="handleSubmit"
         />
 

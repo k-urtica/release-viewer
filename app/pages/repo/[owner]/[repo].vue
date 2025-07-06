@@ -5,7 +5,6 @@ const owner = route.params.owner;
 const repo = route.params.repo;
 
 const currentRepository = ref<RepositoryInfo>({ owner, repo });
-const inputValue = ref(`${owner}/${repo}`);
 const selectedRelease = shallowRef<GitHubRelease | null>(null);
 const openReleaseModal = ref(false);
 
@@ -66,7 +65,6 @@ useSeoMeta({
 
     <div class="mx-auto mt-8 max-w-2xl">
       <RepositoryInput
-        v-model="inputValue"
         @submit="handleSubmit"
       />
     </div>

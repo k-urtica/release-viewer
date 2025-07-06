@@ -8,8 +8,6 @@ interface CustomInputItem {
   icon: string;
 }
 
-const inputValue = defineModel<string>({ default: '' });
-
 const emit = defineEmits<{
   submit: [repositoryUrl: string];
 }>();
@@ -37,9 +35,7 @@ function handleSearchTermChange(newTerm: string) {
 }
 
 function handleSubmit(repositoryUrl: string) {
-  inputValue.value = repositoryUrl;
   emit('submit', repositoryUrl);
-  searchTerm.value = '';
 }
 
 function handleManualInput(userInput: string) {
