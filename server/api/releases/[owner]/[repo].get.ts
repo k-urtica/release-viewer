@@ -3,21 +3,21 @@ import { GITHUB_STATUS } from '~~/server/constants/gh-status';
 import { fetchGitHubReleases, validatePaginationParams } from '~~/server/utils/gh-releases';
 
 export default defineEventHandler(async (event): Promise<ReleasesResponse> => {
-  const { owner, name } = getRouterParams(event);
+  const { owner, repo } = getRouterParams(event);
   const query = getQuery(event);
 
-  if (!owner || !name) {
+  if (!owner || !repo) {
     throw createError(API_ERRORS.MISSING_PARAMS);
   }
 
-  if (!/^[\w.-]+$/.test(owner) || !/^[\w.-]+$/.test(name)) {
+  if (!/^[\w.-]+$/.test(owner) || !/^[\w.-]+$/.test(repo)) {
     throw createError(API_ERRORS.INVALID_FORMAT);
   }
 
   try {
     const { page, perPage } = validatePaginationParams(query);
 
-    return await fetchGitHubReleases(owner, name, page, perPage);
+    return await fetchGitHubReleases(owner, repo, page, perPage);
   } catch (error: unknown) {
     console.error('GitHub API error:', error);
 

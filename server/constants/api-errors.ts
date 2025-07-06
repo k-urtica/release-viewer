@@ -2,12 +2,12 @@ export const API_ERRORS = {
   MISSING_PARAMS: {
     statusCode: 400,
     statusMessage: 'Bad Request',
-    message: 'Repository owner and name are required',
+    message: 'Repository owner and repo are required',
   },
   INVALID_FORMAT: {
     statusCode: 400,
     statusMessage: 'Bad Request',
-    message: 'Invalid repository owner or name format',
+    message: 'Invalid repository owner or repo format',
   },
   REPOSITORY_NOT_FOUND: {
     statusCode: 404,
