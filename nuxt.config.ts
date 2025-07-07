@@ -62,9 +62,6 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    '/api/releases/**': {
-      headers: { 'Cache-Control': 'public, max-age=3600', },
-    },
     '/repo/**': { swr: true },
     '/': { prerender: true },
   },
