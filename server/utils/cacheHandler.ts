@@ -60,5 +60,5 @@ export async function withEdgeCache<T>(
 
   event.waitUntil(cacheApi.put(cacheKey, response.clone()));
 
-  return { ...result, cacheHit: false };
+  return result;
 }
