@@ -39,7 +39,7 @@
     { "rule": "*-newline", "severity": "off", "fixable": true },
     { "rule": "*quotes", "severity": "off", "fixable": true },
     { "rule": "*semi", "severity": "off", "fixable": true },
-    { "rule": "readable-tailwind/*", "severity": "off", "fixable": true }
+    { "rule": "better-tailwindcss/*", "severity": "off", "fixable": true }
   ],
 
   "eslint.validate": [
