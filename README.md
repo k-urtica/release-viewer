@@ -47,16 +47,16 @@ Release Viewer helps you easily browse and explore release information from any 
 - **Tailwind CSS**
 - **Cloudflare** (hosting)
 
+## ⚡ Performance & Caching
+
+Release Viewer uses intelligent edge caching to provide fast response times while respecting GitHub API rate limits:
+
+- **Browser Cache**: 10 minutes - keeps recently viewed releases available for quick re-access
+- **Edge Cache**: 4 hours - reduces server load and GitHub API calls for popular repositories
+- **Cache Strategy**: Automatic cache invalidation ensures fresh data while maximizing performance
+
+This caching approach significantly improves user experience, especially when browsing popular repositories or revisiting recently viewed releases.
+
 ## 💭 Motivation
 
 Honestly, I just needed this for work.
-
-## 🎯 Future Plans
-
-| Status | Feature | Description |
-|--------|---------|-------------|
-| ✅ | Pagination for large repositories | Implemented with infinite scroll |
-| ✅ | Direct GitHub API access | Implemented with @octokit/rest |
-| ✅ | npm registry API suggestion UI | Type-safe suggestion of GitHub repositories from npm package names |
-| ✅ | UI improvements and accessibility enhancements | Better UX and a11y support |
-| 🔄 | API caching using Cache API | Improve performance and reduce API rate limits by caching responses with the Cache API |
