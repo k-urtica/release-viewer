@@ -21,6 +21,8 @@
   --ui-radius: 0.3rem;
 
   --header-height: 64px;
+  --pinned-bar-height: 32px;
+  --app-top-offset: calc(var(--header-height) + var(--pinned-bar-height));
   --footer-height: 48px;
 
   --font-family: 'Oxanium', 'Noto Sans JP', '-apple-system', BlinkMacSystemFont, Helvetica, Arial, Meiryo, sans-serif;
