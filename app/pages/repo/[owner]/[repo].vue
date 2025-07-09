@@ -125,7 +125,7 @@ useSeoMeta({
 
         <div
           class="sticky top-[calc(var(--app-top-offset)+1rem)] max-h-[calc(100vh-var(--app-top-offset)-2rem)] max-lg:hidden lg:col-span-5"
-          :style="{ '--app-top-offset': hasPinned ? 'calc(var(--header-height) + var(--pinned-bar-height))' : 'var(--header-height)' }"
+          :style="{ '--app-top-offset': hasPinned ? undefined : 'var(--header-height)' }"
         >
           <div class="h-full">
             <div v-if="selectedRelease" class="flex h-full flex-col bg-default">
