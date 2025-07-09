@@ -36,7 +36,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="flex min-h-[calc(100dvh-var(--header-height))] items-center justify-center pb-(--footer-height)">
+  <div class="flex min-h-[calc(100dvh-var(--app-top-offset))] items-center justify-center overflow-hidden pb-(--footer-height)">
     <UContainer class="max-w-4xl pt-10 pb-20">
       <HeroTitle />
 
@@ -52,13 +52,13 @@ useSeoMeta({
           </h3>
           <div class="mt-1 flex flex-wrap justify-center gap-2">
             <UButton
-              v-for="repo in POPULAR_REPOSITORIES"
-              :key="`${repo.owner}/${repo.repo}`"
-              :label="`${repo.owner}/${repo.repo}`"
+              v-for="(repo, idx) in POPULAR_REPOSITORIES"
+              :key="idx"
+              :label="getRepoName(repo)"
               color="neutral"
               variant="soft"
               size="sm"
-              :aria-label="`Open ${repo.owner}/${repo.repo}`"
+              :aria-label="`Open ${getRepoName(repo)}`"
               @click="handleSearch(repo)"
             />
           </div>

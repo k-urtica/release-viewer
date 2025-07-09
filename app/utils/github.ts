@@ -25,3 +25,10 @@ export function openGitHubRelease(repository: RepositoryInfo, release: GitHubRel
 export function isGitHubUrl(input: string): boolean {
   return input.startsWith('https://github.com/');
 }
+
+/**
+ * Get the full repository name in the format "owner/repo"
+ */
+export function getRepoName(repository: RepositoryInfo): string {
+  return `${repository.owner}/${repository.repo}`;
+}

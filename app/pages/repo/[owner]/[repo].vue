@@ -11,8 +11,13 @@ const openReleaseModal = ref(false);
 const toast = useToast();
 const isMobile = useAppBreakpoints().smaller('lg');
 const { addToHistory } = useSearchHistory();
+const { hasPinned, isPinned, togglePinnedRepository } = usePinnedRepositories();
 
-const repositoryUrl = computed(() => `https://github.com/${currentRepository.value.owner}/${currentRepository.value.repo}`);
+const pinned = computed(() => isPinned(currentRepository.value));
+
+const currentRepoUrl = computed(() => `https://github.com/${currentRepository.value.owner}/${currentRepository.value.repo}`);
+
+const currentRepoName = computed(() => getRepoName(currentRepository.value));
 
 function handleSubmit(inputValue: string) {
   const repository = parseRepository(inputValue);
@@ -53,9 +58,22 @@ function clearSelection() {
   openReleaseModal.value = false;
 }
 
+function handleTogglePin() {
+  togglePinnedRepository(currentRepository.value);
+  const repoName = getRepoName(currentRepository.value);
+
+  toast.add({
+    title: pinned.value ? 'Repository pinned' : 'Repository unpinned',
+    description: pinned.value
+      ? `${repoName} added to pinned`
+      : `${repoName} removed from pinned`,
+    color: pinned.value ? 'success' : 'neutral'
+  });
+}
+
 useSeoMeta({
-  title: `${owner}/${repo} Releases - Release Viewer`,
-  description: `Browse release notes for ${owner}/${repo} GitHub repository with a clean, easy-to-use interface.`,
+  title: `${currentRepoName.value} Releases - Release Viewer`,
+  description: `Browse release notes for ${currentRepoName.value} GitHub repository with a clean, easy-to-use interface.`,
 });
 </script>
 
@@ -71,20 +89,24 @@ useSeoMeta({
 
     <div class="mx-auto mt-10 text-center">
       <div class="mx-auto flex max-w-2xl flex-col items-center gap-2 rounded-xl bg-muted/80 px-6 py-5 ring-1 ring-muted/40">
-        <div class="flex items-center gap-2">
-          <UIcon name="i-lucide-github" class="shrink-0 text-xl text-highlighted" />
-          <span class="text-2xl font-bold tracking-tight text-highlighted">
-            {{ `${currentRepository.owner}/${currentRepository.repo}` }}
-          </span>
+        <div class="flex items-center gap-5">
+          <div class="flex items-center gap-2">
+            <UIcon name="i-lucide-github" class="shrink-0 text-xl text-highlighted" />
+            <span class="text-lg leading-tight font-bold text-highlighted lg:text-2xl">
+              {{ currentRepoName }}
+            </span>
+          </div>
+          <PinToggleButton :model-value="pinned" @update:model-value="handleTogglePin" />
         </div>
+
         <ULink
-          :to="repositoryUrl"
+          :to="currentRepoUrl"
           target="_blank"
           aria-label="Open repository on GitHub"
           class="inline-flex items-center gap-1 text-sm hover:underline"
         >
           <UIcon name="i-lucide-external-link" class="shrink-0 text-base" />
-          {{ repositoryUrl }}
+          {{ currentRepoUrl }}
         </ULink>
       </div>
     </div>
@@ -101,7 +123,10 @@ useSeoMeta({
           />
         </div>
 
-        <div class="sticky top-[calc(var(--header-height)+1rem)] max-h-[calc(100vh-var(--header-height)-2rem)] max-lg:hidden lg:col-span-5">
+        <div
+          class="sticky top-[calc(var(--app-top-offset)+1rem)] max-h-[calc(100vh-var(--app-top-offset)-2rem)] max-lg:hidden lg:col-span-5"
+          :style="{ '--app-top-offset': hasPinned ? undefined : 'var(--header-height)' }"
+        >
           <div class="h-full">
             <div v-if="selectedRelease" class="flex h-full flex-col bg-default">
               <h3 class="mb-2 text-xl font-semibold text-highlighted">
