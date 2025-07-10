@@ -61,6 +61,7 @@ export default withNuxt(
     'better-tailwindcss/enforce-consistent-class-order': 'error',
     'better-tailwindcss/enforce-consistent-line-wrapping': 'off',
     'better-tailwindcss/enforce-consistent-variable-syntax': ['error', { syntax: 'parentheses' }],
+    'better-tailwindcss/enforce-shorthand-classes': 'error',
     'better-tailwindcss/no-duplicate-classes': 'error',
     'better-tailwindcss/no-unnecessary-whitespace': 'error',
   },
