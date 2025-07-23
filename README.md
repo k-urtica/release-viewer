@@ -2,6 +2,8 @@
 
 A clean and intuitive web tool for browsing GitHub repository release notes.
 
+![Release Viewer](https://github.com/user-attachments/assets/8362c148-aff4-4204-862e-fdfe55eda656)
+
 ## 📦 Overview
 
 Release Viewer helps you easily browse and explore release information from any GitHub repository. Whether you're tracking updates across multiple projects or diving deep into specific release notes, this tool provides a streamlined experience for staying up-to-date with your favorite open source projects.
@@ -41,7 +43,7 @@ Release Viewer helps you easily browse and explore release information from any 
 
 ## 🛠️ Tech Stack
 
-- **Nuxt 4** (compatibility version 4)
+- **Nuxt 4**
 - **TypeScript**
 - **NuxtUI v3** (semantic theming)
 - **Tailwind CSS**
