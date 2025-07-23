@@ -66,15 +66,11 @@ export default defineNuxtConfig({
     '/': { prerender: true },
   },
 
-  future: {
-    compatibilityVersion: 4,
-  },
-
   experimental: {
     typedPages: true,
   },
 
-  compatibilityDate: '2025-05-15',
+  compatibilityDate: '2025-07-15',
 
   nitro: {
     preset: 'cloudflare-module',
