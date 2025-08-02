@@ -71,9 +71,9 @@ function handleTogglePin() {
   });
 }
 
-useSeoMeta({
-  title: `${currentRepoName.value} Releases - Release Viewer`,
-  description: `Browse release notes for ${currentRepoName.value} GitHub repository with a clean, easy-to-use interface.`,
+useAppHead({
+  title: `${currentRepoName.value} Releases`,
+  description: `Browse release notes for ${currentRepoName.value} GitHub repository with a clean, easy-to-use interface.`
 });
 </script>
 

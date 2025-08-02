@@ -1,6 +1,5 @@
 const SITE_URL = 'https://release-viewer.web-toolbox.dev';
-const SITE_TITLE = 'Release Viewer - Browse GitHub Repository Releases';
-const SITE_DESCRIPTION = 'Browse GitHub repository release notes with a clean, easy-to-use interface. Enter a repository name or URL to view release information.';
+const SITE_TITLE = 'Release Viewer';
 
 export default defineNuxtConfig({
   modules: [
@@ -27,17 +26,12 @@ export default defineNuxtConfig({
         lang: 'en',
       },
       meta: [
-        { property: 'og:title', content: SITE_TITLE },
-        { property: 'og:description', content: SITE_DESCRIPTION },
         { property: 'og:type', content: 'website' },
-        { property: 'og:url', content: SITE_URL },
         { property: 'og:image', content: `${SITE_URL}/ogp.webp` },
         { property: 'og:image:type', content: 'image/webp' },
         { property: 'og:image:width', content: '1200' },
         { property: 'og:image:height', content: '600' },
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:title', content: SITE_TITLE },
-        { name: 'twitter:description', content: SITE_DESCRIPTION },
       ],
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg', },
