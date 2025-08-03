@@ -71,9 +71,9 @@ function handleTogglePin() {
   });
 }
 
-useAppHead({
-  title: `${currentRepoName.value} Releases`,
-  description: `Browse release notes for ${currentRepoName.value} GitHub repository with a clean, easy-to-use interface.`
+useSeoMeta({
+  title: () => `${currentRepoName.value} Releases`,
+  description: () => `Browse release notes for ${currentRepoName.value} GitHub repository with a clean, easy-to-use interface.`,
 });
 </script>
 

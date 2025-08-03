@@ -29,10 +29,9 @@ async function handleSearch(repo: RepositoryInfo) {
   await navigateTo(`/repo/${repo.owner}/${repo.repo}`);
 }
 
-useAppHead({
+useSeoMeta({
   title: 'Release Viewer',
   titleTemplate: '%s - Explore & Search GitHub Releases',
-  description: 'Browse GitHub repository release notes with a clean, easy-to-use interface. Enter a repository name or URL to view release information.'
 });
 </script>
 

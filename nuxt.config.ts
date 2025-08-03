@@ -1,10 +1,10 @@
 const SITE_URL = 'https://release-viewer.web-toolbox.dev';
-const SITE_TITLE = 'Release Viewer';
+const SITE_NAME = 'Release Viewer';
+const SITE_DESCRIPTION = 'Browse GitHub repository release notes with a clean, easy-to-use interface. Enter a repository name or URL to view release information.';
 
 export default defineNuxtConfig({
   modules: [
-    '@nuxtjs/sitemap',
-    '@nuxtjs/robots',
+    '@nuxtjs/seo',
     '@nuxt/ui',
     '@nuxt/scripts',
     '@nuxt/eslint',
@@ -22,17 +22,6 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      htmlAttrs: {
-        lang: 'en',
-      },
-      meta: [
-        { property: 'og:type', content: 'website' },
-        { property: 'og:image', content: `${SITE_URL}/ogp.webp` },
-        { property: 'og:image:type', content: 'image/webp' },
-        { property: 'og:image:width', content: '1200' },
-        { property: 'og:image:height', content: '600' },
-        { name: 'twitter:card', content: 'summary_large_image' },
-      ],
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg', },
       ],
@@ -42,8 +31,9 @@ export default defineNuxtConfig({
   css: ['@/assets/main.css'],
 
   site: {
-    name: SITE_TITLE,
-    url: SITE_URL
+    name: SITE_NAME,
+    url: SITE_URL,
+    description: SITE_DESCRIPTION,
   },
 
   ui: {
@@ -95,6 +85,23 @@ export default defineNuxtConfig({
       scan: true,
     },
     serverBundle: false,
+  },
+
+  linkChecker: {
+    enabled: false
+  },
+
+  ogImage: {
+    enabled: false,
+  },
+
+  seo: {
+    meta: {
+      author: 'K',
+      twitterCard: 'summary_large_image',
+      ogType: 'website',
+    },
+    metaDataFiles: true
   },
 
   sitemap: {
