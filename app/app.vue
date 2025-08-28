@@ -42,6 +42,6 @@ async function handlePinnedRepositorySelect(repo: RepositoryInfo) {
   background-image:
     linear-gradient(to right, --alpha(var(--ui-border) / 0.23) 1px, transparent 1px),
     linear-gradient(to bottom, --alpha(var(--ui-border) / 0.23) 1px, transparent 1px);
-  background-size: 22px 26px;
+  background-size: 20px 20px;
 }
 </style>
