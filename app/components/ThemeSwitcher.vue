@@ -15,13 +15,16 @@ const icon = computed(() => (isDark.value ? 'i-lucide-moon' : 'i-lucide-sun'));
 
 <template>
   <ClientOnly>
-    <UButton
-      :icon
-      variant="outline"
-      size="sm"
-      aria-label="Toggle theme"
-      @click="isDark = !isDark"
-    />
+    <UTooltip text="Toggle theme" arrow>
+      <UButton
+        :icon
+        variant="outline"
+        size="sm"
+        aria-label="Toggle theme"
+        class="rounded-full"
+        @click="isDark = !isDark"
+      />
+    </UTooltip>
     <template #fallback>
       <USkeleton class="size-7" />
     </template>

@@ -45,20 +45,13 @@ function handleOpenPinnedDrawer() {
             </template>
           </UButton>
           <template #fallback>
-            <USkeleton class="size-7" />
+            <USkeleton class="size-7 lg:hidden" />
           </template>
         </ClientOnly>
 
         <ThemeSwitcher />
 
-        <UButton
-          icon="i-mdi-github"
-          size="sm"
-          variant="outline"
-          to="https://github.com/k-urtica/release-viewer"
-          target="_blank"
-          aria-label="GitHub repository"
-        />
+        <GitHubButton />
       </div>
     </UContainer>
   </header>
