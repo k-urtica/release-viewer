@@ -26,7 +26,7 @@ const icon = computed(() => (isDark.value ? 'i-lucide-moon' : 'i-lucide-sun'));
       />
     </UTooltip>
     <template #fallback>
-      <USkeleton class="size-7" />
+      <USkeleton class="size-7 rounded-full" />
     </template>
   </ClientOnly>
 </template>
