@@ -51,7 +51,7 @@ function scrollRight() {
       class="scrollbar-none flex items-center gap-1 overflow-x-auto"
       :class="{ 'mx-8': hasHorizontalOverflow }"
     >
-      <UButtonGroup
+      <UFieldGroup
         v-for="repo in pinnedRepositories"
         :key="`${getRepoName(repo)}`"
         size="xs"
@@ -74,7 +74,7 @@ function scrollRight() {
             @click="handleRemovePinned(repo)"
           />
         </UTooltip>
-      </UButtonGroup>
+      </UFieldGroup>
     </div>
 
     <UButton

@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@nuxt/scripts": "0.12.1",
-    "@nuxt/ui": "3.3.3",
+    "@nuxt/ui": "4.0.0",
     "@nuxtjs/seo": "3.2.2",
     "@octokit/rest": "22.0.0",
     "@unhead/vue": "2.0.17",

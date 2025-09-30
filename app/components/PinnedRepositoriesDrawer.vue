@@ -49,7 +49,7 @@ function handleClearAll() {
         </div>
 
         <div v-else class="flex flex-col space-y-2.5 py-4">
-          <UButtonGroup
+          <UFieldGroup
             v-for="repo in pinnedRepositories"
             :key="`${getRepoName(repo)}`"
             size="xl"
@@ -71,7 +71,7 @@ function handleClearAll() {
               class="text-dimmed/40 hover:text-muted"
               @click="handleRemovePinned(repo)"
             />
-          </UButtonGroup>
+          </UFieldGroup>
         </div>
       </div>
     </template>
