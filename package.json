@@ -12,33 +12,33 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@nuxt/scripts": "0.12.1",
-    "@nuxt/ui": "4.0.0",
+    "@nuxt/scripts": "0.13.0",
+    "@nuxt/ui": "4.0.1",
     "@nuxtjs/seo": "3.2.2",
     "@octokit/rest": "22.0.0",
-    "@unhead/vue": "2.0.17",
+    "@unhead/vue": "2.0.19",
     "@vueuse/core": "13.9.0",
     "@vueuse/nuxt": "13.9.0",
     "@vueuse/router": "13.9.0",
-    "dompurify": "3.2.7",
+    "dompurify": "3.3.0",
     "git-url-parse": "16.1.0",
-    "marked": "16.3.0",
+    "marked": "16.4.0",
     "nuxt": "4.1.2",
     "vue": "3.5.22",
     "vue-router": "4.5.1"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "5.4.1",
-    "@iconify-json/lucide": "1.2.68",
+    "@antfu/eslint-config": "6.0.0",
+    "@iconify-json/lucide": "1.2.69",
     "@nuxt/devtools": "2.6.5",
     "@nuxt/eslint": "1.9.0",
-    "eslint": "9.36.0",
-    "eslint-plugin-better-tailwindcss": "3.7.9",
+    "eslint": "9.37.0",
+    "eslint-plugin-better-tailwindcss": "3.7.10",
     "eslint-plugin-format": "1.0.2",
-    "lint-staged": "16.2.3",
+    "lint-staged": "16.2.4",
     "simple-git-hooks": "2.13.1",
-    "typescript": "5.9.2",
-    "wrangler": "4.40.3"
+    "typescript": "5.9.3",
+    "wrangler": "4.43.0"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"
