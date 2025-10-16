@@ -60,10 +60,15 @@ useHead(() => ({
           />
         </template>
         <template #right>
-          <ReleaseMetaInfo :release="release" />
+          <!-- <ReleaseMetaInfo :release="release" /> -->
         </template>
-      <!-- <ReleaseHeader :release="release" /> -->
       </UDashboardNavbar>
+
+      <UDashboardToolbar class="py-2">
+        <template #right>
+          <ReleaseMetaInfo :release="release" class="ms-auto justify-end" />
+        </template>
+      </UDashboardToolbar>
     </template>
 
     <template #body>
@@ -75,39 +80,6 @@ useHead(() => ({
       </div>
     </template>
   </UDashboardPanel>
-  <!-- <article>
-    <header>
-      <ReleaseHeader :release="release" class="border-b pb-2">
-        <template #actions>
-          <div class="ms-auto flex items-center gap-3">
-            <UButton
-              icon="i-lucide-external-link"
-              color="neutral"
-              variant="outline"
-              size="sm"
-              label="GitHub"
-              aria-label="Open release on GitHub"
-              @click="$emit('openGitHub', release)"
-            />
-            <UButton
-              icon="i-lucide-x"
-              color="neutral"
-              variant="outline"
-              size="sm"
-              aria-label="Close detail"
-              @click="$emit('close')"
-            />
-          </div>
-        </template>
-      </ReleaseHeader>
-    </header>
-    <div class="mt-6 overflow-hidden rounded-lg ring-1 ring-muted/40">
-      <section
-        class="markdown-body px-4 py-6"
-        v-html="release.html"
-      />
-    </div>
-  </article> -->
 </template>
 
 <style scoped>

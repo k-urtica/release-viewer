@@ -6,7 +6,6 @@ const repo = route.params.repo;
 
 const currentRepository = ref<RepositoryInfo>({ owner, repo });
 const selectedRelease = shallowRef<GitHubRelease | null>(null);
-const openReleaseModal = ref(false);
 
 const toast = useToast();
 const isMobile = useAppBreakpoints().smaller('lg');
@@ -31,9 +30,6 @@ const isDetailPanelOpen = computed({
 
 function handleSelectRelease(release: GitHubRelease) {
   selectedRelease.value = release;
-  if (isMobile.value) {
-    openReleaseModal.value = true;
-  }
 }
 
 function handleOpenGitHub(release: GitHubRelease) {
