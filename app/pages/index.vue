@@ -38,7 +38,7 @@ useSeoMeta({
 <template>
   <div class="flex flex-1 overflow-hidden rounded-sm border bg-surface shadow-2xs lg:my-2 lg:mr-2">
     <UDashboardPanel
-      id="index"
+      id="index-0"
       :ui="{
         root: 'min-h-[calc(100svh-2rem)]',
       }"
@@ -50,8 +50,8 @@ useSeoMeta({
       </UDashboardNavbar>
 
       <UContainer class="flex h-full max-w-2xl items-center justify-center">
-        <div class="space-y-4">
-          <RepositoryInput @submit="handleSubmit" />
+        <div class="space-y-6">
+          <RepositoryPicker @submit="handleSubmit" />
 
           <div>
             <h2 class="mb-2 text-center font-medium">

@@ -3,6 +3,7 @@ import type { NavigationMenuItem } from '@nuxt/ui';
 
 const { pinnedRepositories, removePinnedRepository } = usePinnedRepositories();
 const { searchHistories } = useSearchHistory();
+const openSearchModal = ref(false);
 
 type NavigationMenuItemWithRepo = NavigationMenuItem & { repo?: RepositoryInfo };
 
@@ -11,6 +12,7 @@ const pinnedMenus = computed<NavigationMenuItemWithRepo[]>(() => {
     {
       label: 'Pinned Repos',
       icon: 'i-lucide-pin',
+      type: 'trigger',
       defaultOpen: true,
       children: pinnedRepositories.value.length
         ? pinnedRepositories.value.map((repo) => ({
@@ -52,13 +54,19 @@ const recentlyMenus = computed(() => {
     }
   ] satisfies NavigationMenuItem[];
 });
+
+defineShortcuts({
+  meta_k: () => {
+    openSearchModal.value = !openSearchModal.value;
+  }
+});
 </script>
 
 <template>
   <UDashboardSidebar
     id="default"
     collapsible
-    resizable
+    :resizable="false"
     :default-size="16"
     :ui="{
       root: 'border-none min-h-[calc(100svh-2rem)] transition-[width] ease-in-out',
@@ -77,10 +85,27 @@ const recentlyMenus = computed(() => {
     </template>
 
     <template #default="{ collapsed }">
-      <UDashboardSearchButton :collapsed="collapsed" class="bg-transparent ring-default" />
+      <RepositorySearchModal v-model:open="openSearchModal">
+        <UButton
+          variant="outline"
+          :label="collapsed ? undefined : 'Search repository'"
+          icon="i-lucide-search"
+          :block="collapsed"
+          aria-label="Search repository"
+          class="w-full rounded-lg"
+        >
+          <template v-if="!collapsed" #trailing>
+            <div class="ms-auto flex items-center gap-0.5">
+              <UKbd value="meta" variant="subtle" size="sm" />
+              <UKbd value="k" variant="subtle" size="sm" />
+            </div>
+          </template>
+        </UButton>
+      </RepositorySearchModal>
 
       <ClientOnly>
         <UNavigationMenu
+          color="neutral"
           :collapsed="collapsed"
           :items="pinnedMenus"
           orientation="vertical"
@@ -102,11 +127,27 @@ const recentlyMenus = computed(() => {
         </UNavigationMenu>
 
         <UNavigationMenu
+          color="neutral"
           :collapsed="collapsed"
           :items="recentlyMenus"
           orientation="vertical"
           tooltip
           popover
+        />
+
+        <UNavigationMenu
+          color="neutral"
+          :collapsed="collapsed"
+          :items="[{
+            label: 'Feedback',
+            icon: 'i-lucide-message-circle',
+            to: 'https://github.com/k-urtica/release-viewer/issues',
+            target: '_blank'
+          }]"
+          orientation="vertical"
+          tooltip
+          popover
+          class="mt-auto"
         />
       </ClientOnly>
     </template>
