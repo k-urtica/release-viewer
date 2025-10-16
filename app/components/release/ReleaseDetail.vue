@@ -17,6 +17,7 @@ const cssHref = computed(() =>
     ? 'https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.8.1/github-markdown-dark.min.css'
     : 'https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.8.1/github-markdown-light.min.css'
 );
+
 useHead(() => ({
   link: [
     {
@@ -28,7 +29,53 @@ useHead(() => ({
 </script>
 
 <template>
-  <article class="rounded-lg border p-6">
+  <UDashboardPanel
+    id="release-detail"
+    :ui="{ root: 'min-h-[calc(100svh-2rem)] border-none' }"
+  >
+    <template #header>
+      <UDashboardNavbar :title="release.name || release.tag" :toggle="false">
+        <template #toggle>
+          <UButton
+            icon="i-lucide-x"
+            color="neutral"
+            variant="ghost"
+            size="sm"
+            aria-label="Close detail"
+            @click="$emit('close')"
+          />
+        </template>
+        <template #trailing>
+          <UBadge
+            v-if="release.prerelease"
+            color="warning"
+            variant="soft"
+            label="Pre-release"
+          />
+          <UBadge
+            v-if="release.draft"
+            color="neutral"
+            variant="soft"
+            label="Draft"
+          />
+        </template>
+        <template #right>
+          <ReleaseMetaInfo :release="release" />
+        </template>
+      <!-- <ReleaseHeader :release="release" /> -->
+      </UDashboardNavbar>
+    </template>
+
+    <template #body>
+      <div class="flex flex-col">
+        <section
+          class="markdown-body overflow-hidden rounded-lg p-4 ring-1 ring-default"
+          v-html="release.html"
+        />
+      </div>
+    </template>
+  </UDashboardPanel>
+  <!-- <article>
     <header>
       <ReleaseHeader :release="release" class="border-b pb-2">
         <template #actions>
@@ -60,7 +107,7 @@ useHead(() => ({
         v-html="release.html"
       />
     </div>
-  </article>
+  </article> -->
 </template>
 
 <style scoped>

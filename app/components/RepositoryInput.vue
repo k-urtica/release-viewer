@@ -64,8 +64,8 @@ function handleSelect({ value }: CustomInputItem) {
       :create-item="{ position: 'bottom', when: 'empty' }"
       icon="i-lucide-search"
       trailing-icon=""
-      placeholder="Enter GitHub repository URL or search by npm package name"
-      size="xl"
+      placeholder="GitHub repository URL or npm package name"
+      size="lg"
       variant="outline"
       ignore-filter
       :autofocus="autofocus"

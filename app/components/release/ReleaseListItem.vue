@@ -16,16 +16,16 @@ defineEmits<{
   <a
     href="#"
     :aria-label="`View details for release ${release.name || release.tag}`"
-    class="block rounded-lg border bg-default px-4 py-5 transition-colors hover:border-primary hover:shadow-md"
+    class="block rounded-lg border bg-elevated/40 p-4 transition-colors outline-none hover:border-primary hover:shadow-sm focus-visible:border-primary"
     @click.prevent="$emit('select', release)"
   >
     <ReleaseHeader :release="release" class="border-b pb-2">
       <template #actions>
         <UButton
           v-if="repository"
-          icon="i-lucide-external-link"
+          trailing-icon="i-lucide-external-link"
           color="neutral"
-          variant="outline"
+          variant="ghost"
           size="sm"
           label="GitHub"
           class="ms-auto"
@@ -33,10 +33,10 @@ defineEmits<{
         />
       </template>
     </ReleaseHeader>
-    <div v-if="release.html" class="mt-4 rounded-lg bg-muted/80 p-4">
+    <div v-if="release.html" class="mt-4 rounded-lg">
       <div
         inert
-        class="line-clamp-5 text-sm text-toned"
+        class="line-clamp-4 text-sm text-muted"
         v-html="release.html"
       />
     </div>
