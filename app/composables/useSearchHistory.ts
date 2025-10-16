@@ -1,5 +1,5 @@
 export function useSearchHistory() {
-  const MAX_HISTORY_SIZE = 10;
+  const MAX_HISTORY_SIZE = 30;
 
   const searchHistories = useLocalStorage<RepositoryInfo[]>('release-viewer-history', []);
 

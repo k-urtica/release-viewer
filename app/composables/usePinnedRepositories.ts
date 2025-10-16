@@ -2,7 +2,7 @@ interface PinnedRepository extends RepositoryInfo {
   pinnedAt: number;
 }
 
-const MAX_PINNED_REPOSITORIES = 10;
+const MAX_PINNED_REPOSITORIES = 30;
 
 /**
  * Composable for managing pinned GitHub repositories in local storage.
