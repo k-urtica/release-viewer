@@ -11,19 +11,21 @@ const timeAgo = computed(() =>
 </script>
 
 <template>
-  <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted">
-    <div class="flex items-center gap-1">
-      <UIcon name="i-lucide-tag" class="size-4" />
-      <span>{{ release.tag }}</span>
-    </div>
+  <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-muted">
+    <UBadge
+      icon="i-lucide-tag"
+      variant="subtle"
+      color="neutral"
+      :label="release.tag"
+    />
 
-    <div class="flex items-center gap-1">
+    <div class="flex items-center gap-1 text-sm">
       <UIcon name="i-lucide-calendar" class="size-4" />
       <span>{{ release.publishedAt && formatDate(release.publishedAt) }}</span>
       <UBadge size="sm" color="neutral" variant="soft">{{ timeAgo }}</UBadge>
     </div>
 
-    <div class="flex items-center gap-1">
+    <div class="flex items-center gap-1 text-sm">
       <UAvatar
         :src="release.authorAvatarUrl"
         icon="i-lucide-user"

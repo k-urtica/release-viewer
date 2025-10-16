@@ -1,30 +1,36 @@
 <script setup lang="ts">
+import type { GitHubRelease } from '#shared/types/github';
+
 defineProps<{
   release: GitHubRelease;
+}>();
+
+defineEmits<{
+  openRelease: [release: GitHubRelease];
 }>();
 </script>
 
 <template>
   <div class="space-y-3">
-    <div class="flex flex-wrap items-center gap-3">
-      <h3 class="text-lg font-bold text-highlighted lg:text-xl">
-        {{ release.name || release.tag }}
-      </h3>
-      <div class="flex items-center gap-1.5">
-        <UBadge
-          v-if="release.prerelease"
-          color="warning"
-          variant="soft"
-          label="Pre-release"
-        />
-        <UBadge
-          v-if="release.draft"
+    <div class="flex flex-wrap items-center gap-2">
+      <h2 class="text-lg font-bold text-highlighted">
+        {{ getReleaseTitle(release) }}
+      </h2>
+
+      <ReleaseStatusBadges :prerelease="release.prerelease" :draft="release.draft" />
+
+      <div class="ms-auto">
+        <UButton
+          trailing-icon="i-lucide-external-link"
           color="neutral"
-          variant="soft"
-          label="Draft"
+          variant="ghost"
+          size="sm"
+          label="GitHub"
+          class="ms-auto"
+          aria-label="Open release on GitHub"
+          @click.stop="$emit('openRelease', release)"
         />
       </div>
-      <slot name="actions" />
     </div>
     <ReleaseMetaInfo :release="release" />
   </div>

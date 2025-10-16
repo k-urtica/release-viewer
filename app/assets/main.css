@@ -16,18 +16,27 @@
   }
 }
 
+@theme {
+  --color-surface: var(--surface-color);
+}
+
 :root {
+  --ui-bg: rgb(245 245 246);
   --ui-container: 90rem;
+  --ui-header-height: 58px;
   --ui-radius: 0.3rem;
 
-  --header-height: 64px;
-  --pinned-bar-height: 32px;
-  --app-top-offset: calc(var(--header-height) + var(--pinned-bar-height));
-  --footer-height: 48px;
+  --surface-color: rgb(255 255 255);
 
   --font-family: Geist, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', Meiryo, sans-serif;
 
   scroll-behavior: smooth;
+}
+
+.dark {
+  --ui-bg: rgb(20 20 22);
+
+  --surface-color: rgb(28 28 30);
 }
 
 body {
@@ -40,4 +49,10 @@ body {
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body,
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--ui-border-accented) transparent;
 }

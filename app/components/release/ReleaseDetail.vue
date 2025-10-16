@@ -17,6 +17,7 @@ const cssHref = computed(() =>
     ? 'https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.8.1/github-markdown-dark.min.css'
     : 'https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.8.1/github-markdown-light.min.css'
 );
+
 useHead(() => ({
   link: [
     {
@@ -28,39 +29,44 @@ useHead(() => ({
 </script>
 
 <template>
-  <article class="rounded-lg border p-6">
-    <header>
-      <ReleaseHeader :release="release" class="border-b pb-2">
-        <template #actions>
-          <div class="ms-auto flex items-center gap-3">
-            <UButton
-              icon="i-lucide-external-link"
-              color="neutral"
-              variant="outline"
-              size="sm"
-              label="GitHub"
-              aria-label="Open release on GitHub"
-              @click="$emit('openGitHub', release)"
-            />
-            <UButton
-              icon="i-lucide-x"
-              color="neutral"
-              variant="outline"
-              size="sm"
-              aria-label="Close detail"
-              @click="$emit('close')"
-            />
-          </div>
+  <UDashboardPanel
+    id="release-detail"
+    :ui="{ root: 'min-h-[calc(100svh-2rem)] border-none' }"
+  >
+    <template #header>
+      <UDashboardNavbar :title="getReleaseTitle(release)" :toggle="false">
+        <template #trailing>
+          <ReleaseStatusBadges :prerelease="release.prerelease" :draft="release.draft" />
         </template>
-      </ReleaseHeader>
-    </header>
-    <div class="mt-6 overflow-hidden rounded-lg ring-1 ring-muted/40">
-      <section
-        class="markdown-body px-4 py-6"
-        v-html="release.html"
-      />
-    </div>
-  </article>
+
+        <template #right>
+          <UButton
+            icon="i-lucide-x"
+            color="neutral"
+            variant="ghost"
+            size="sm"
+            aria-label="Close detail"
+            @click="$emit('close')"
+          />
+        </template>
+      </UDashboardNavbar>
+
+      <UDashboardToolbar class="py-2">
+        <template #right>
+          <ReleaseMetaInfo :release="release" class="ms-auto justify-end" />
+        </template>
+      </UDashboardToolbar>
+    </template>
+
+    <template #body>
+      <div class="flex flex-col">
+        <section
+          class="markdown-body overflow-hidden rounded-lg p-4 ring-1 ring-default"
+          v-html="release.html"
+        />
+      </div>
+    </template>
+  </UDashboardPanel>
 </template>
 
 <style scoped>

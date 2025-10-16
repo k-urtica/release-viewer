@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const toast = useToast();
-const { searchHistory, addToHistory } = useSearchHistory();
+const { addToHistory } = useSearchHistory();
 
 const POPULAR_REPOSITORIES: RepositoryInfo[] = [
   { owner: 'microsoft', repo: 'vscode' },
@@ -36,51 +36,49 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="flex min-h-[calc(100dvh-var(--app-top-offset))] items-center justify-center overflow-hidden pb-(--footer-height)">
-    <UContainer class="max-w-4xl pt-10 pb-20">
-      <HeroTitle />
+  <div class="flex flex-1 overflow-hidden rounded-sm border bg-surface shadow-2xs lg:my-2 lg:mr-2">
+    <UDashboardPanel
+      id="index-0"
+      :ui="{
+        root: 'min-h-[calc(100svh-2rem)]',
+      }"
+    >
+      <UDashboardNavbar :ui="{ root: 'border-none' }">
+        <template #leading>
+          <UDashboardSidebarCollapse />
+        </template>
+      </UDashboardNavbar>
 
-      <div class="mx-auto mt-8 max-w-2xl">
-        <RepositoryInput
-          autofocus
-          @submit="handleSubmit"
-        />
+      <UContainer class="flex h-full max-w-2xl items-center justify-center pb-20">
+        <div class="space-y-8">
+          <div class="space-y-2 text-center">
+            <h2 class="text-2xl font-bold">Release Viewer</h2>
+            <p>
+              Explore and search GitHub releases with a clean, easy-to-use interface.
+            </p>
+          </div>
 
-        <div class="mt-4">
-          <h3 class="text-center text-lg font-medium">
-            Popular Repositories
-          </h3>
-          <div class="mt-1 flex flex-wrap justify-center gap-2">
-            <UButton
-              v-for="(repo, idx) in POPULAR_REPOSITORIES"
-              :key="idx"
-              :label="getRepoName(repo)"
-              color="neutral"
-              variant="soft"
-              size="sm"
-              :aria-label="`Open ${getRepoName(repo)}`"
-              @click="handleSearch(repo)"
-            />
+          <RepositoryPicker @submit="handleSubmit" />
+
+          <div>
+            <h3 class="mb-2 text-center font-medium">
+              Popular Repositories
+            </h3>
+            <div class="flex flex-wrap justify-center gap-2">
+              <UButton
+                v-for="(repo, idx) in POPULAR_REPOSITORIES"
+                :key="idx"
+                :label="getRepoName(repo)"
+                color="neutral"
+                variant="soft"
+                size="sm"
+                :aria-label="`Open ${getRepoName(repo)}`"
+                @click="handleSearch(repo)"
+              />
+            </div>
           </div>
         </div>
-
-        <ClientOnly>
-          <SearchHistory
-            :search-history="searchHistory"
-            class="mt-8"
-            @click="handleSearch"
-          />
-        </ClientOnly>
-      </div>
-    </UContainer>
-
-    <footer class="fixed inset-x-0 bottom-0 h-(--footer-height) border-t border-muted/40 bg-default/60 backdrop-blur-xs">
-      <UContainer class="flex h-full items-center justify-center text-center">
-        <p class="text-sm text-muted">
-          Crafted with <span aria-label="love" role="img">💚</span> by
-          <NuxtLink to="https://github.com/k-urtica" target="_blank" class="underline">K</NuxtLink>
-        </p>
       </UContainer>
-    </footer>
+    </UDashboardPanel>
   </div>
 </template>

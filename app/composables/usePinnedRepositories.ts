@@ -2,7 +2,7 @@ interface PinnedRepository extends RepositoryInfo {
   pinnedAt: number;
 }
 
-const MAX_PINNED_REPOSITORIES = 10;
+const MAX_PINNED_REPOSITORIES = 30;
 
 /**
  * Composable for managing pinned GitHub repositories in local storage.
@@ -11,6 +11,8 @@ const MAX_PINNED_REPOSITORIES = 10;
  * as well as check pin status. The maximum number of pinned repositories is limited.
  */
 export function usePinnedRepositories() {
+  const { removeFromHistory } = useSearchHistory();
+
   const pinnedRepositories = useLocalStorage<PinnedRepository[]>(
     'pinned-repositories',
     [],
@@ -32,6 +34,8 @@ export function usePinnedRepositories() {
       newPinned,
       ...pinnedRepositories.value.slice(0, MAX_PINNED_REPOSITORIES - 1)
     ];
+
+    removeFromHistory(repo);
   };
 
   const removePinnedRepository = (repo: RepositoryInfo) => {

@@ -32,3 +32,7 @@ export function isGitHubUrl(input: string): boolean {
 export function getRepoName(repository: RepositoryInfo): string {
   return `${repository.owner}/${repository.repo}`;
 }
+
+export function getReleaseTitle(release: GitHubRelease): string {
+  return release.name || release.tag;
+}

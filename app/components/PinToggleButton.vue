@@ -5,7 +5,7 @@ const pinned = defineModel<boolean>();
 
 const icon = computed(() => pinned.value ? 'i-lucide-pin' : 'i-lucide-pin-off');
 const color = computed<ButtonProps['color']>(() => pinned.value ? 'primary' : 'neutral');
-const ariaLabel = computed(() => pinned.value ? 'Unpin repository' : 'Pin repository');
+const tooltip = computed(() => pinned.value ? 'Unpin repository' : 'Pin repository');
 
 function handleClick() {
   pinned.value = !pinned.value;
@@ -14,13 +14,13 @@ function handleClick() {
 
 <template>
   <ClientOnly>
-    <UTooltip :text="ariaLabel" arrow>
+    <UTooltip :text="tooltip" arrow>
       <UButton
         :icon="icon"
         :color="color"
         variant="subtle"
         size="xs"
-        :aria-label="ariaLabel"
+        :aria-label="tooltip"
         @click="handleClick"
       />
     </UTooltip>
