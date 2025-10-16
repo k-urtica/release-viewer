@@ -62,7 +62,7 @@ const recentlyMenus = computed(() => {
     :default-size="16"
     :ui="{
       root: 'border-none min-h-[calc(100svh-2rem)] transition-[width] ease-in-out',
-      footer: 'p-4'
+      footer: 'p-4 lg:border-t'
     }"
   >
     <template #header="{ collapsed }">

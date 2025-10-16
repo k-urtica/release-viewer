@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const props = defineProps<{
-  repository: RepositoryInfo | null;
+  repository: RepositoryInfo;
 }>();
 
 const emit = defineEmits<{
@@ -9,6 +9,8 @@ const emit = defineEmits<{
 
 const el = useTemplateRef('el');
 const { releases, loading, error, pagination, reset, loadMore } = useGitHubReleases();
+
+const activeRelease = shallowRef<GitHubRelease>();
 
 // Watch repository changes and load releases
 watch(() => props.repository, (newRepo) => {
@@ -31,6 +33,7 @@ useInfiniteScroll(
 );
 
 const handleSelectRelease = (release: GitHubRelease) => {
+  activeRelease.value = release;
   emit('selectRelease', release);
 };
 </script>
@@ -38,7 +41,7 @@ const handleSelectRelease = (release: GitHubRelease) => {
 <template>
   <div ref="el" class="flex flex-col space-y-4 overflow-y-auto p-4 sm:p-6">
     <div v-if="loading && releases.length === 0" class="space-y-4">
-      <USkeleton v-for="i in 5" :key="i" class="h-32 w-full" />
+      <USkeleton v-for="i in 5" :key="i" class="h-40 w-full" />
     </div>
 
     <UAlert
@@ -55,12 +58,13 @@ const handleSelectRelease = (release: GitHubRelease) => {
         :key="release.id"
         :release="release"
         :repository="repository"
+        :active="release.tag === activeRelease?.tag"
         @select="handleSelectRelease"
-        @open-git-hub="openGitHubRelease"
+        @open-release="openGitHubRelease"
       />
 
       <div v-if="loading" class="space-y-3">
-        <USkeleton v-for="i in 3" :key="i" class="h-32 w-full" />
+        <USkeleton v-for="i in 3" :key="i" class="h-40 w-full" />
       </div>
 
       <div v-else-if="!pagination.hasNextPage" class="py-4 text-center">

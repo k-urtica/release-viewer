@@ -100,7 +100,7 @@ useSeoMeta({
 
       <template #body>
         <ClientOnly>
-          <InfiniteReleaseList
+          <ReleaseList
             :repository="currentRepository"
             @select-release="handleSelectRelease"
           />

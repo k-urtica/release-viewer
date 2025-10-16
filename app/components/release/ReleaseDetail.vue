@@ -35,16 +35,6 @@ useHead(() => ({
   >
     <template #header>
       <UDashboardNavbar :title="release.name || release.tag" :toggle="false">
-        <template #toggle>
-          <UButton
-            icon="i-lucide-x"
-            color="neutral"
-            variant="ghost"
-            size="sm"
-            aria-label="Close detail"
-            @click="$emit('close')"
-          />
-        </template>
         <template #trailing>
           <UBadge
             v-if="release.prerelease"
@@ -60,7 +50,14 @@ useHead(() => ({
           />
         </template>
         <template #right>
-          <!-- <ReleaseMetaInfo :release="release" /> -->
+          <UButton
+            icon="i-lucide-x"
+            color="neutral"
+            variant="ghost"
+            size="sm"
+            aria-label="Close detail"
+            @click="$emit('close')"
+          />
         </template>
       </UDashboardNavbar>
 
