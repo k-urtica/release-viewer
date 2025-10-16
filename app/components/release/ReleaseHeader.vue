@@ -16,20 +16,8 @@ defineEmits<{
       <h2 class="text-lg font-bold text-highlighted">
         {{ getReleaseTitle(release) }}
       </h2>
-      <div class="flex items-center gap-1.5">
-        <UBadge
-          v-if="release.prerelease"
-          color="warning"
-          variant="soft"
-          label="Pre-release"
-        />
-        <UBadge
-          v-if="release.draft"
-          color="neutral"
-          variant="soft"
-          label="Draft"
-        />
-      </div>
+
+      <ReleaseStatusBadges :prerelease="release.prerelease" :draft="release.draft" />
 
       <div class="ms-auto">
         <UButton

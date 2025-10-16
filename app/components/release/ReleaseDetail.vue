@@ -34,21 +34,11 @@ useHead(() => ({
     :ui="{ root: 'min-h-[calc(100svh-2rem)] border-none' }"
   >
     <template #header>
-      <UDashboardNavbar :title="release.name || release.tag" :toggle="false">
+      <UDashboardNavbar :title="getReleaseTitle(release)" :toggle="false">
         <template #trailing>
-          <UBadge
-            v-if="release.prerelease"
-            color="warning"
-            variant="soft"
-            label="Pre-release"
-          />
-          <UBadge
-            v-if="release.draft"
-            color="neutral"
-            variant="soft"
-            label="Draft"
-          />
+          <ReleaseStatusBadges :prerelease="release.prerelease" :draft="release.draft" />
         </template>
+
         <template #right>
           <UButton
             icon="i-lucide-x"
