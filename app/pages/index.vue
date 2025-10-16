@@ -49,14 +49,21 @@ useSeoMeta({
         </template>
       </UDashboardNavbar>
 
-      <UContainer class="flex h-full max-w-2xl items-center justify-center">
-        <div class="space-y-6">
+      <UContainer class="flex h-full max-w-2xl items-center justify-center pb-20">
+        <div class="space-y-8">
+          <div class="space-y-2 text-center">
+            <h2 class="text-2xl font-bold">Release Viewer</h2>
+            <p>
+              Explore and search GitHub releases with a clean, easy-to-use interface.
+            </p>
+          </div>
+
           <RepositoryPicker @submit="handleSubmit" />
 
           <div>
-            <h2 class="mb-2 text-center font-medium">
+            <h3 class="mb-2 text-center font-medium">
               Popular Repositories
-            </h2>
+            </h3>
             <div class="flex flex-wrap justify-center gap-2">
               <UButton
                 v-for="(repo, idx) in POPULAR_REPOSITORIES"
