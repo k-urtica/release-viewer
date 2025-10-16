@@ -2,11 +2,11 @@
 
 A clean and intuitive web tool for browsing GitHub repository release notes.
 
-![Release Viewer](https://github.com/user-attachments/assets/8362c148-aff4-4204-862e-fdfe55eda656)
+![Release Viewer](https://github.com/user-attachments/assets/f73ec368-c51b-422e-a2ef-19bbfca1e520)
 
 ## 📦 Overview
 
-Release Viewer helps you easily browse and explore release information from any GitHub repository. Whether you're tracking updates across multiple projects or diving deep into specific release notes, this tool provides a streamlined experience for staying up-to-date with your favorite open source projects.
+Release Viewer helps you easily browse and explore release information from any GitHub repository. With a modern dashboard-style layout featuring sidebar navigation, you can quickly access your pinned repositories, recently viewed projects, and search history. Whether you're tracking updates across multiple projects or diving deep into specific release notes, this tool provides a streamlined experience for staying up-to-date with your favorite open source projects.
 
 ## 🌐 Site URL
 
@@ -14,40 +14,43 @@ Release Viewer helps you easily browse and explore release information from any 
 
 ## ✨ Key Features
 
+- **Dashboard-Style Layout**: Clean sidebar navigation with easy access to pinned repositories, recently viewed repositories, and feedback links for streamlined workflow.
 - **Release List**: Chronological view of all releases, with infinite scroll, tags, pre-release/beta identification, and direct GitHub links.
 - **Release Details**: Beautiful Markdown rendering, with support for links, images, and code snippets.
 - **Smart Search & Navigation**:
   - Search by `owner/repo`, full GitHub URL, or npm package name (with suggestions in 'package-name → owner/repo' format).
   - UI avoids confusion even when multiple packages point to the same repository.
-  - Quick access to search history and popular repositories.
+  - Quick access to pinned repositories and search history directly from the sidebar.
   - Direct repository links and URL synchronization for sharing.
-- **Modern UX**: Responsive, mobile-friendly, dark/light mode, fast navigation, skeleton loading, and real-time error handling.
+- **Modern UX**: Responsive, mobile-friendly, dark/light mode with refined color scheme, fast navigation, skeleton loading, custom scrollbar styling, and real-time error handling.
 
 ## 💡 How to Use
 
 1. **Enter a Repository**:
-   - Use `owner/repo` (e.g., `microsoft/vscode`), a full GitHub URL, or an npm package name to get suggestions.
-2. **Browse Releases**:
+   - Use the sidebar search to enter `owner/repo` (e.g., `microsoft/vscode`), a full GitHub URL, or an npm package name to get suggestions.
+2. **Pin Your Favorites**:
+   - Pin frequently accessed repositories for quick access from the sidebar.
+3. **Browse Releases**:
    - Releases load automatically with infinite scroll.
-3. **View Details**:
+4. **View Details**:
    - Click a release to see full notes and metadata.
-4. **Quick Access**:
-   - Use search history or popular repositories for fast navigation.
+5. **Quick Access**:
+   - Use the sidebar to access pinned repositories, recently viewed repositories, and search history for fast navigation.
 
 ### Tips
 
+- Pin your most-used repositories to the sidebar for instant access
 - Bookmark/share direct URLs (e.g., `/repo/microsoft/vscode`)
-- Your recent searches are saved for convenience
-- Try popular repositories to explore the tool
-- Works great on phones and tablets
+- Your recent searches and viewed repositories are saved for convenience
+- Works great on phones and tablets with responsive sidebar design
 
 ## 🛠️ Tech Stack
 
-- **Nuxt 4**
+- **Nuxt v4**
 - **TypeScript**
-- **NuxtUI v3** (semantic theming)
+- **NuxtUI v4**
 - **Tailwind CSS**
-- **Cloudflare** (hosting)
+- **Cloudflare Workers**
 
 ## ⚡ Performance & Caching
 
