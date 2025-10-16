@@ -113,16 +113,17 @@ defineShortcuts({
           popover
         >
           <template #item-trailing="{ item }">
-            <UButton
-              v-if="item.repo"
-              icon="i-lucide-x"
-              color="neutral"
-              variant="ghost"
-              size="xs"
-              aria-label="Unpin repository"
-              class="opacity-0 transition-opacity group-hover:opacity-100"
-              @click.stop="removePinnedRepository(item.repo)"
-            />
+            <UTooltip v-if="item.repo" text="Unpin repository" arrow>
+              <UButton
+                icon="i-lucide-pin-off"
+                color="neutral"
+                variant="ghost"
+                size="xs"
+                aria-label="Unpin repository"
+                class="opacity-0 transition-opacity group-hover:opacity-100 focus-visible:opacity-100"
+                @click.prevent.stop="removePinnedRepository(item.repo)"
+              />
+            </UTooltip>
           </template>
         </UNavigationMenu>
 
