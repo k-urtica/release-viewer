@@ -120,7 +120,7 @@ defineShortcuts({
                 variant="ghost"
                 size="xs"
                 aria-label="Unpin repository"
-                class="opacity-0 transition-opacity group-hover:opacity-100 focus-visible:opacity-100"
+                class="absolute -right-0.5 text-muted transition-opacity group-hover:opacity-100 focus-visible:opacity-100 lg:opacity-0"
                 @click.prevent.stop="removePinnedRepository(item.repo)"
               />
             </UTooltip>
@@ -135,22 +135,22 @@ defineShortcuts({
           tooltip
           popover
         />
-
-        <UNavigationMenu
-          color="neutral"
-          :collapsed="collapsed"
-          :items="[{
-            label: 'Feedback',
-            icon: 'i-lucide-message-circle',
-            to: 'https://github.com/k-urtica/release-viewer/issues',
-            target: '_blank'
-          }]"
-          orientation="vertical"
-          tooltip
-          popover
-          class="mt-auto"
-        />
       </ClientOnly>
+
+      <UNavigationMenu
+        color="neutral"
+        :collapsed="collapsed"
+        :items="[{
+          label: 'Feedback',
+          icon: 'i-lucide-message-circle',
+          to: 'https://github.com/k-urtica/release-viewer/issues',
+          target: '_blank'
+        }]"
+        orientation="vertical"
+        tooltip
+        popover
+        class="mt-auto"
+      />
     </template>
 
     <template #footer="{ collapsed }">

@@ -36,7 +36,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="flex flex-1 overflow-hidden rounded-sm border bg-surface shadow-2xs lg:my-2 lg:mr-2">
+  <div class="flex flex-1 overflow-hidden rounded-sm bg-surface shadow-2xs lg:my-2 lg:mr-2 lg:border">
     <UDashboardPanel
       id="index-0"
       :ui="{
