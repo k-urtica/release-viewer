@@ -67,7 +67,7 @@ defineShortcuts({
     id="default"
     collapsible
     :resizable="false"
-    :default-size="16"
+    :default-size="18"
     :ui="{
       root: 'border-none min-h-[calc(100svh-2rem)] transition-[width] ease-in-out',
       footer: 'p-4 lg:border-t'
