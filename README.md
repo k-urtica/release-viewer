@@ -56,8 +56,8 @@ Release Viewer helps you easily browse and explore release information from any 
 
 Release Viewer uses intelligent edge caching to provide fast response times while respecting GitHub API rate limits:
 
-- **Browser Cache**: 10 minutes - keeps recently viewed releases available for quick re-access
-- **Edge Cache**: 4 hours - reduces server load and GitHub API calls for popular repositories
+- **Browser Cache**: 1 hour - keeps recently viewed releases available for quick re-access
+- **Edge Cache**: 6 hours - reduces server load and GitHub API calls for popular repositories
 - **Cache Strategy**: Automatic cache invalidation ensures fresh data while maximizing performance
 
 This caching approach significantly improves user experience, especially when browsing popular repositories or revisiting recently viewed releases.

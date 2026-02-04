@@ -40,7 +40,7 @@ export default defineEventHandler(async (event) => {
       throw createError(API_ERRORS.INTERNAL_ERROR);
     }
   }, {
-    maxAge: 600,
-    sMaxAge: 14400
+    maxAge: 3600,
+    sMaxAge: 21600
   });
 });
