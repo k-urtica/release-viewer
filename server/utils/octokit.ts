@@ -1,7 +1,7 @@
 import { Octokit } from '@octokit/rest';
 
 export function useOctokit() {
-  return new Octokit({ auth: useRuntimeConfig().githubToken });
+  return new Octokit({ auth: useRuntimeConfig().ghToken });
 }
 
 export function isOctokitError(error: unknown): error is { status: number; message: string } {

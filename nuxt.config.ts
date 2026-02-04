@@ -45,7 +45,7 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
-    githubToken: process.env.GH_TOKEN,
+    ghToken: process.env.NUXT_GH_TOKEN,
   },
 
   routeRules: {
