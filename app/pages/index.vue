@@ -36,49 +36,45 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="flex flex-1 overflow-hidden rounded-sm bg-surface shadow-2xs lg:my-2 lg:mr-2 lg:border">
-    <UDashboardPanel
-      id="index-0"
-      :ui="{
-        root: 'min-h-[calc(100svh-2rem)]',
-      }"
-    >
-      <UDashboardNavbar :ui="{ root: 'border-none' }">
-        <template #leading>
-          <UDashboardSidebarCollapse />
-        </template>
-      </UDashboardNavbar>
+  <UDashboardPanel
+    id="index-0"
+    :ui="{ root: 'overflow-y-auto min-h-(--app-content-height) bg-surface' }"
+  >
+    <UDashboardNavbar :ui="{ root: 'border-none' }">
+      <template #leading>
+        <UDashboardSidebarCollapse />
+      </template>
+    </UDashboardNavbar>
 
-      <UContainer class="flex h-full max-w-2xl items-center justify-center pb-20">
-        <div class="space-y-8">
-          <div class="space-y-2 text-center">
-            <h2 class="text-2xl font-bold">Release Viewer</h2>
-            <p>
-              Explore and search GitHub releases with a clean, easy-to-use interface.
-            </p>
-          </div>
+    <UContainer class="flex h-full max-w-2xl items-center justify-center pb-20">
+      <div class="space-y-8">
+        <div class="space-y-2 text-center">
+          <h2 class="text-2xl font-bold">Release Viewer</h2>
+          <p>
+            Explore and search GitHub releases with a clean, easy-to-use interface.
+          </p>
+        </div>
 
-          <RepositoryPicker @submit="handleSubmit" />
+        <RepositoryPicker @submit="handleSubmit" />
 
-          <div>
-            <h3 class="mb-2 text-center font-medium">
-              Popular Repositories
-            </h3>
-            <div class="flex flex-wrap justify-center gap-2">
-              <UButton
-                v-for="(repo, idx) in POPULAR_REPOSITORIES"
-                :key="idx"
-                :label="getRepoName(repo)"
-                color="neutral"
-                variant="soft"
-                size="sm"
-                :aria-label="`Open ${getRepoName(repo)}`"
-                @click="handleSearch(repo)"
-              />
-            </div>
+        <div>
+          <h3 class="mb-2 text-center font-medium">
+            Popular Repositories
+          </h3>
+          <div class="flex flex-wrap justify-center gap-2">
+            <UButton
+              v-for="(repo, idx) in POPULAR_REPOSITORIES"
+              :key="idx"
+              :label="getRepoName(repo)"
+              color="neutral"
+              variant="soft"
+              size="sm"
+              :aria-label="`Open ${getRepoName(repo)}`"
+              @click="handleSearch(repo)"
+            />
           </div>
         </div>
-      </UContainer>
-    </UDashboardPanel>
-  </div>
+      </div>
+    </UContainer>
+  </UDashboardPanel>
 </template>

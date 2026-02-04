@@ -69,7 +69,8 @@ defineShortcuts({
     :resizable="false"
     :default-size="18"
     :ui="{
-      root: 'border-none min-h-[calc(100svh-2rem)] transition-[width] ease-in-out',
+      root: 'border-none min-h-(--app-content-height) transition-[width] ease-in-out',
+      body: 'overflow-x-clip',
       footer: 'p-4 lg:border-t'
     }"
   >
@@ -109,6 +110,7 @@ defineShortcuts({
           :collapsed="collapsed"
           :items="pinnedMenus"
           orientation="vertical"
+          highlight
           tooltip
           popover
         >
@@ -132,6 +134,7 @@ defineShortcuts({
           :collapsed="collapsed"
           :items="recentlyMenus"
           orientation="vertical"
+          highlight
           tooltip
           popover
         />

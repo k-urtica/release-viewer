@@ -56,7 +56,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="flex flex-1 overflow-hidden rounded-sm bg-surface shadow-2xs lg:my-2 lg:mr-2 lg:border">
+  <div class="flex flex-1 overflow-clip bg-surface">
     <UDashboardPanel
       id="release-list"
       :default-size="35"
@@ -64,7 +64,7 @@ useSeoMeta({
       :max-size="38"
       resizable
       :ui="{
-        root: 'min-h-[calc(100svh-2rem)]',
+        root: 'min-h-(--app-content-height)',
         body: 'p-0 sm:p-0',
       }"
     >

@@ -14,7 +14,7 @@ function handleClick() {
 
 <template>
   <ClientOnly>
-    <UTooltip :text="tooltip" arrow>
+    <UTooltip :text="tooltip" arrow disable-closing-trigger>
       <UButton
         :icon="icon"
         :color="color"

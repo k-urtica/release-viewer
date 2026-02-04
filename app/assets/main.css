@@ -23,8 +23,11 @@
 :root {
   --ui-bg: rgb(245 245 246);
   --ui-container: 90rem;
-  --ui-header-height: 58px;
+  --ui-header-height: 48px;
   --ui-radius: 0.3rem;
+
+  --app-margin: 0.5rem;
+  --app-content-height: calc(100svh - var(--app-margin) * 2);
 
   --surface-color: rgb(255 255 255);
 
