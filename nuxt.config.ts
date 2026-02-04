@@ -11,6 +11,8 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
   ],
 
+  ssr: true,
+
   components: [
     {
       path: '@/components',
@@ -95,7 +97,8 @@ export default defineNuxtConfig({
   },
 
   ogImage: {
-    enabled: false,
+    enabled: true,
+    zeroRuntime: true,
   },
 
   seo: {
