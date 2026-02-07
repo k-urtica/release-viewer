@@ -36,6 +36,39 @@ const handleSelectRelease = (release: GitHubRelease) => {
   activeRelease.value = release;
   emit('selectRelease', release);
 };
+
+const navigateRelease = (direction: 'up' | 'down') => {
+  if (releases.value.length === 0) return;
+
+  const currentIndex = activeRelease.value
+    ? releases.value.findIndex((r) => r.tag === activeRelease.value!.tag)
+    : -1;
+
+  let nextIndex: number;
+  if (direction === 'down') {
+    nextIndex = currentIndex < releases.value.length - 1 ? currentIndex + 1 : currentIndex;
+  } else {
+    nextIndex = currentIndex > 0 ? currentIndex - 1 : 0;
+  }
+
+  const nextRelease = releases.value[nextIndex];
+  if (nextRelease) {
+    handleSelectRelease(nextRelease);
+    nextTick(() => {
+      const items = el.value?.querySelectorAll<HTMLAnchorElement>('a[aria-label^="View details"]');
+      const activeItem = items?.[nextIndex];
+      if (activeItem) {
+        activeItem.focus({ preventScroll: true });
+        activeItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    });
+  }
+};
+
+defineShortcuts({
+  arrowdown: () => navigateRelease('down'),
+  arrowup: () => navigateRelease('up'),
+});
 </script>
 
 <template>
