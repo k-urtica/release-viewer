@@ -14,6 +14,11 @@ export const API_ERRORS = {
     statusMessage: 'Not Found',
     message: 'Repository not found. Please check the repository name.',
   },
+  RELEASE_NOT_FOUND: {
+    statusCode: 404,
+    statusMessage: 'Not Found',
+    message: 'Release not found for the specified tag.',
+  },
   RATE_LIMIT_EXCEEDED: {
     statusCode: 429,
     statusMessage: 'Too Many Requests',

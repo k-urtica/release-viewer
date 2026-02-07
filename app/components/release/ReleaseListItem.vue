@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { GitHubRelease, RepositoryInfo } from '~/../shared/types/github';
 
-defineProps<{
+const props = defineProps<{
   release: GitHubRelease;
   repository: RepositoryInfo;
   active?: boolean;
@@ -11,10 +11,25 @@ defineEmits<{
   select: [release: GitHubRelease];
   openRelease: [repository: RepositoryInfo, release: GitHubRelease];
 }>();
+
+const el = useTemplateRef('el');
+
+function scrollIntoView() {
+  requestAnimationFrame(() => {
+    el.value?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  });
+}
+
+watch(() => props.active, (isActive) => {
+  if (isActive) {
+    scrollIntoView();
+  }
+}, { flush: 'post', immediate: true });
 </script>
 
 <template>
   <a
+    ref="el"
     href="#"
     :aria-label="`View details for release ${release.name || release.tag}`"
     class="block rounded-lg border border-muted p-4 transition-colors outline-none hover:border-primary hover:shadow-sm focus-visible:border-primary"
