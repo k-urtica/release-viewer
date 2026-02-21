@@ -117,6 +117,12 @@ useSeoMeta({
       <div class="flex flex-col items-center justify-center gap-2 text-center text-dimmed">
         <UIcon name="i-lucide-mouse-pointer-click" class="size-20" />
         <p class="font-medium">Select a release to view details</p>
+        <p class="text-sm text-muted">
+          or use
+          <UKbd value="arrowup" variant="subtle" size="sm" />
+          <UKbd value="arrowdown" variant="subtle" size="sm" />
+          to browse
+        </p>
       </div>
     </div>
 
