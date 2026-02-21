@@ -119,8 +119,8 @@ useSeoMeta({
         <p class="font-medium">Select a release to view details</p>
         <p class="text-sm text-muted">
           or use
-          <UKbd value="arrow-up" variant="subtle" size="sm" />
-          <UKbd value="arrow-down" variant="subtle" size="sm" />
+          <UKbd value="arrowup" variant="subtle" size="sm" />
+          <UKbd value="arrowdown" variant="subtle" size="sm" />
           to browse
         </p>
       </div>
