@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const props = defineProps<{
   repository: RepositoryInfo;
+  activeTag?: string | null;
 }>();
 
 const emit = defineEmits<{
@@ -9,8 +10,6 @@ const emit = defineEmits<{
 
 const el = useTemplateRef('el');
 const { releases, loading, error, pagination, reset, loadMore } = useGitHubReleases();
-
-const activeRelease = shallowRef<GitHubRelease>();
 
 // Watch repository changes and load releases
 watch(() => props.repository, (newRepo) => {
@@ -33,7 +32,6 @@ useInfiniteScroll(
 );
 
 const handleSelectRelease = (release: GitHubRelease) => {
-  activeRelease.value = release;
   emit('selectRelease', release);
 };
 
@@ -91,7 +89,7 @@ defineShortcuts({
         :key="release.id"
         :release="release"
         :repository="repository"
-        :active="release.tag === activeRelease?.tag"
+        :active="release.tag === activeTag"
         @select="handleSelectRelease"
         @open-release="openGitHubRelease"
       />

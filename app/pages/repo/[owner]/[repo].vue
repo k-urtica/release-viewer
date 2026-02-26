@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const route = useRoute('repo-owner-repo');
+const router = useRouter();
 
 const owner = route.params.owner;
 const repo = route.params.repo;
@@ -23,13 +24,19 @@ const isDetailPanelOpen = computed({
   },
   set(value: boolean) {
     if (!value) {
-      selectedRelease.value = null;
+      handleCloseDetail();
     }
   }
 });
 
 function handleSelectRelease(release: GitHubRelease) {
   selectedRelease.value = release;
+  router.replace({ query: { tag: release.tag } });
+}
+
+function handleCloseDetail() {
+  selectedRelease.value = null;
+  router.replace({ query: {} });
 }
 
 function handleOpenGitHub(release: GitHubRelease) {
@@ -48,6 +55,24 @@ function handleTogglePin() {
     color: pinned.value ? 'success' : 'neutral'
   });
 }
+
+// Resolve ?tag= query parameter on mount
+onMounted(async () => {
+  const tag = route.query.tag;
+  if (typeof tag !== 'string' || !tag) return;
+
+  try {
+    const release = await $fetch<GitHubRelease>(`/api/releases/${owner}/${repo}/${tag}`);
+    selectedRelease.value = release;
+  } catch {
+    router.replace({ query: {} });
+    toast.add({
+      title: 'Release not found',
+      description: `No release found for tag "${tag}".`,
+      color: 'error',
+    });
+  }
+});
 
 useSeoMeta({
   title: () => `${currentRepoName.value} Releases`,
@@ -102,6 +127,7 @@ useSeoMeta({
         <ClientOnly>
           <ReleaseList
             :repository="currentRepository"
+            :active-tag="selectedRelease?.tag"
             @select-release="handleSelectRelease"
           />
         </ClientOnly>
@@ -111,7 +137,7 @@ useSeoMeta({
     <ReleaseDetail
       v-if="selectedRelease"
       :release="selectedRelease"
-      @close="selectedRelease = null"
+      @close="handleCloseDetail"
     />
     <div v-else class="hidden flex-1 items-center justify-center lg:flex">
       <div class="flex flex-col items-center justify-center gap-2 text-center text-dimmed">
@@ -132,7 +158,7 @@ useSeoMeta({
           <ReleaseDetail
             v-if="selectedRelease"
             :release="selectedRelease"
-            @close="selectedRelease = null"
+            @close="handleCloseDetail"
             @open-git-hub="handleOpenGitHub"
           />
         </template>

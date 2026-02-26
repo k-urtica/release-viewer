@@ -51,6 +51,23 @@ export function transformOctokitRelease(octokitRelease: OctokitRelease): GitHubR
 }
 
 /**
+ * Fetch a single GitHub release by tag name
+ */
+export async function fetchGitHubReleaseByTag(
+  owner: string,
+  repo: string,
+  tag: string
+): Promise<GitHubRelease> {
+  const response = await useOctokit().rest.repos.getReleaseByTag({
+    owner,
+    repo,
+    tag,
+  });
+
+  return transformOctokitRelease(response.data);
+}
+
+/**
  * Fetch GitHub releases with pagination
  */
 export async function fetchGitHubReleases(
