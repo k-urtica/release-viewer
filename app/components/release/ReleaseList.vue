@@ -11,6 +11,12 @@ const emit = defineEmits<{
 const el = useTemplateRef('el');
 const { releases, loading, error, pagination, reset, loadMore } = useGitHubReleases();
 
+const activeRelease = computed(() =>
+  props.activeTag
+    ? releases.value.find((r) => r.tag === props.activeTag)
+    : null
+);
+
 // Watch repository changes and load releases
 watch(() => props.repository, (newRepo) => {
   if (newRepo) {
