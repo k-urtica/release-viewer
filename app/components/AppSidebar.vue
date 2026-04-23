@@ -84,7 +84,7 @@ defineShortcuts({
     <template #default="{ collapsed }">
       <div class="h-full">
         <div class="sticky top-0 z-1">
-          <div aria-hidden="true" class="pointer-events-none -mx-4 h-2 bg-default/80 px-4 backdrop-blur-xs" />
+          <div aria-hidden="true" class="pointer-events-none -mx-4 h-2 bg-app-base/80 px-4 backdrop-blur-xs" />
 
           <UButton
             variant="outline"
@@ -103,7 +103,7 @@ defineShortcuts({
             </template>
           </UButton>
 
-          <div aria-hidden="true" class="pointer-events-none -mx-4 -mt-0.5 h-4 bg-linear-to-b from-default to-transparent px-4" />
+          <div aria-hidden="true" class="pointer-events-none -mx-4 -mt-0.5 h-4 bg-linear-to-b from-app-base to-transparent px-4" />
         </div>
 
         <ClientOnly>
