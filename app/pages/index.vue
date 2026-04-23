@@ -42,7 +42,7 @@ useSeoMeta({
   >
     <UDashboardNavbar :ui="{ root: 'border-none' }">
       <template #leading>
-        <UDashboardSidebarCollapse />
+        <UDashboardSidebarCollapse size="sm" />
       </template>
     </UDashboardNavbar>
 
