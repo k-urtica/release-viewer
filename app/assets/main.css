@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import '@nuxt/ui';
+@import './animations.css';
 
 @layer base {
   button:not(:disabled),

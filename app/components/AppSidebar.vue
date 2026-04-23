@@ -121,6 +121,7 @@ defineShortcuts({
               link: 'tracking-tight data-[active]:bg-accented/50 hover:before:bg-accented/40 rounded-md',
               linkTrailingIcon: 'size-4 group-data-[state=open]:rotate-90',
             }"
+            class="animate-fade-in"
           >
             <template #item-trailing="{ item }">
               <UTooltip
