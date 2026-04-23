@@ -48,8 +48,11 @@ useSeoMeta({
 
     <UContainer class="flex h-full max-w-2xl items-center justify-center pb-20">
       <div class="space-y-8">
-        <div class="space-y-2 text-center">
-          <h2 class="text-2xl font-bold">Release Viewer</h2>
+        <div class="space-y-2 text-center text-pretty">
+          <h2 class="flex items-center justify-center gap-2 text-2xl font-bold">
+            <UIcon name="i-lucide-github" />
+            <span>Release Viewer</span>
+          </h2>
           <p>
             Explore and search GitHub releases with a clean, easy-to-use interface.
           </p>
