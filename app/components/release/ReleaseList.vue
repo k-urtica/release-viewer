@@ -89,7 +89,7 @@ defineShortcuts({
       icon="i-lucide-circle-alert"
     />
 
-    <div v-else-if="releases.length > 0" class="space-y-4">
+    <div v-else-if="releases.length > 0" class="animate-fade-in space-y-4">
       <ReleaseListItem
         v-for="release in releases"
         :key="release.id"
