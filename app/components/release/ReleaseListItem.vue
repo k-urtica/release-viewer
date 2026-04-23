@@ -32,8 +32,8 @@ watch(() => props.active, (isActive) => {
     ref="el"
     href="#"
     :aria-label="`View details for release ${release.name || release.tag}`"
-    class="block rounded-lg p-4 ring-1 ring-muted transition-colors outline-none hover:shadow-sm hover:ring-primary/70 focus-visible:ring-primary/70"
-    :class="{ 'bg-primary/4 ring-2 ring-primary/70': active }"
+    class="block rounded-lg bg-muted/40 p-4 ring-1 ring-muted transition-colors outline-none hover:shadow-sm hover:ring-primary/70 focus-visible:ring-primary/70"
+    :class="{ 'bg-primary/5 ring-2 ring-primary/70': active }"
     @click.prevent="$emit('select', release)"
   >
     <div class="space-y-3 border-b pb-3">
