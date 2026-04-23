@@ -4,7 +4,7 @@
       icon="i-simple-icons-github"
       size="sm"
       variant="outline"
-      to="https://github.com/k-urtica/release-viewer"
+      :to="REPOSITORY_URL"
       target="_blank"
       aria-label="GitHub repository"
       class="rounded-full"

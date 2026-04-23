@@ -98,7 +98,7 @@ useSeoMeta({
           :title="currentRepoName"
         >
           <template #leading>
-            <UDashboardSidebarCollapse />
+            <UDashboardSidebarCollapse size="sm" />
           </template>
 
           <template #trailing>
@@ -112,7 +112,7 @@ useSeoMeta({
             <UButton
               trailing-icon="i-lucide-external-link"
               color="neutral"
-              variant="ghost"
+              variant="outline"
               size="sm"
               label="Repository"
               aria-label="Open repository on GitHub"
