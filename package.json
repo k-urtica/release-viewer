@@ -9,6 +9,7 @@
     "preview": "nuxt preview",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
+    "typecheck": "nuxt typecheck",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
@@ -37,6 +38,7 @@
     "lint-staged": "17.3.0",
     "simple-git-hooks": "2.13.1",
     "typescript": "5.9.3",
+    "vue-tsc": "3.3.9",
     "wrangler": "4.118.0"
   },
   "simple-git-hooks": {
