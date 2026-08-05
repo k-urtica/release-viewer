@@ -77,8 +77,14 @@ export default defineNuxtConfig({
 
   vite: {
     optimizeDeps: {
-      entries: ['pages/**/*.vue', 'components/**/*.vue'],
-    },
+      include: [
+        '@vue/devtools-core',
+        '@vue/devtools-kit',
+        '@unhead/schema-org/vue',
+        'git-url-parse', // CJS,
+        'dompurify',
+      ]
+    }
   },
 
   eslint: {

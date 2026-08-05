@@ -1,8 +1,9 @@
 <script setup lang="ts">
-defineOgImage({
-  url: '/og-image.png',
-  width: 1200,
-  height: 600,
+useSeoMeta({
+  ogImageUrl: '/og-image.png',
+  twitterImage: '/og-image.png',
+  ogImageWidth: 1200,
+  ogImageHeight: 600,
 });
 </script>
 
