@@ -28,9 +28,7 @@ export function useGitHubReleases() {
         },
       });
 
-      const sanitizedReleases = data.releases.map((r) => ({ ...r, html: sanitizeHtml(r.html) }));
-
-      releases.value = append ? [...releases.value, ...sanitizedReleases] : sanitizedReleases;
+      releases.value = append ? [...releases.value, ...data.releases] : data.releases;
       pagination.value = data.pagination;
     } catch (err) {
       console.error('Failed to fetch releases:', err);
@@ -61,7 +59,7 @@ export function useGitHubReleases() {
   }
 
   return {
-    releases: readonly(releases),
+    releases: shallowReadonly(releases),
     loading: readonly(loading),
     error: readonly(error),
     pagination: readonly(pagination),

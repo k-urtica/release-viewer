@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     '@nuxt/scripts',
     '@nuxt/eslint',
     '@vueuse/nuxt',
+    '@comark/nuxt',
   ],
 
   ssr: true,
@@ -39,6 +40,7 @@ export default defineNuxtConfig({
   },
 
   ui: {
+    prose: false,
     colorMode: true,
     fonts: true,
     experimental: {
@@ -81,8 +83,7 @@ export default defineNuxtConfig({
         '@vue/devtools-core',
         '@vue/devtools-kit',
         '@unhead/schema-org/vue',
-        'git-url-parse', // CJS,
-        'dompurify',
+        'git-url-parse', // CJS
       ]
     }
   },

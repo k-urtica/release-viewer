@@ -1,21 +1,28 @@
-import { marked } from 'marked';
+import type { MarkdownDocument } from 'comark';
+import { createMarkdownParser } from 'comark';
+import breaks from 'comark/plugins/breaks';
+import security from 'comark/plugins/security';
+
+// Blocklist approach: remove executable/external-loading tags and restrict URL protocols
+// Initialized once at module scope and reused across requests (parser is stateless)
+const parse = createMarkdownParser({
+  plugins: [
+    security({
+      blockedTags: ['script', 'iframe', 'object', 'embed', 'link', 'style', 'base', 'meta'],
+      allowedProtocols: ['http', 'https', 'ftp', 'ftps', 'mailto', 'tel', 'callto', 'sms', 'cid', 'xmpp', 'data'],
+      allowDataImages: true, // Allow data:image URIs in img src
+    }),
+    breaks(), // Convert soft line breaks to <br>
+  ],
+});
 
 /**
- * Converts Markdown text to HTML
+ * Parse release body into a serializable MarkdownDocument
  */
-export function convertMarkdownToHtml(markdown: string): string {
+export function parseReleaseMarkdown(markdown: string): Promise<MarkdownDocument> {
   if (!markdown.trim()) {
-    return '';
+    return Promise.resolve({ nodes: [], frontmatter: {}, meta: {} });
   }
 
-  try {
-    return marked.parse(markdown, {
-      gfm: true,
-      breaks: true,
-      async: false
-    });
-  } catch (error) {
-    console.error('Markdown conversion error:', error);
-    return '';
-  }
+  return parse(markdown);
 }
