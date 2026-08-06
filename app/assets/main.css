@@ -37,14 +37,14 @@
   --app-margin: 0.5rem;
   --app-content-height: calc(100svh - var(--app-margin) * 2);
 
-  --app-base: rgb(245, 245, 246);
+  --app-base: rgb(246, 246, 248);
   --surface-color: rgb(255 255 255);
 
   scroll-behavior: smooth;
 }
 
 .dark {
-  --app-base: rgb(20, 20, 22);
+  --app-base: rgb(18, 18, 20);
   --surface-color: rgb(28 28 30);
 }
 

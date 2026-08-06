@@ -155,7 +155,7 @@ defineShortcuts({
           <GitHubButton />
         </div>
 
-        <UColorModeButton size="sm" variant="subtle" class="shrink-0 rounded-full" />
+        <UColorModeButton size="sm" variant="outline" class="shrink-0 rounded-full" />
       </div>
     </template>
   </UDashboardSidebar>
