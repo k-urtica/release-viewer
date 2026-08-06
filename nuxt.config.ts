@@ -53,7 +53,7 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    '/repo/**': { swr: true },
+    '/repo/**': { ssr: true },
     '/': { prerender: true },
   },
 
