@@ -3,11 +3,7 @@ const props = defineProps<{
   release: GitHubRelease;
 }>();
 
-const timeAgo = computed(() =>
-  props.release.publishedAt
-    ? useTimeAgo(props.release.publishedAt).value
-    : ''
-);
+const publishedAt = computed(() => props.release.publishedAt ? new Date(props.release.publishedAt) : null);
 </script>
 
 <template>
@@ -20,15 +16,27 @@ const timeAgo = computed(() =>
       :label="release.tag"
     />
 
-    <div class="flex items-center gap-1 text-sm text-toned">
+    <div v-if="publishedAt" class="flex items-center gap-1">
       <UIcon name="i-lucide-calendar" />
-      <span>{{ release.publishedAt && formatDate(release.publishedAt) }}</span>
+      <NuxtTime
+        :datetime="publishedAt"
+        year="numeric"
+        month="short"
+        day="numeric"
+        locale="en-US"
+        class="text-sm text-toned"
+      />
       <UBadge
         size="sm"
         color="neutral"
         variant="soft"
-        :label="timeAgo"
-      />
+      >
+        <NuxtTime
+          :datetime="publishedAt"
+          relative
+          locale="en-US"
+        />
+      </UBadge>
     </div>
 
     <div class="flex items-center gap-1 text-sm text-toned">

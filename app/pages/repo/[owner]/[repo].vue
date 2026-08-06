@@ -124,13 +124,11 @@ useSeoMeta({
       </template>
 
       <template #body>
-        <ClientOnly>
-          <ReleaseList
-            :repository="currentRepository"
-            :active-tag="selectedRelease?.tag"
-            @select-release="handleSelectRelease"
-          />
-        </ClientOnly>
+        <ReleaseList
+          :repository="currentRepository"
+          :active-tag="selectedRelease?.tag"
+          @select-release="handleSelectRelease"
+        />
       </template>
     </UDashboardPanel>
 

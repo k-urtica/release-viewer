@@ -1,6 +1,7 @@
 /**
  * GitHub API related types for release viewer
  */
+import type { MarkdownDocument } from 'comark';
 
 /**
  * Repository information type
@@ -24,7 +25,7 @@ export interface GitHubRelease {
   prerelease: boolean;
   createdAt: string;
   publishedAt: string | null;
-  html: string;
+  document: MarkdownDocument;
 }
 
 /**

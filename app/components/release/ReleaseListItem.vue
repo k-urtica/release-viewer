@@ -14,6 +14,8 @@ defineEmits<{
 
 const el = useTemplateRef('el');
 
+const previewDocument = computed(() => trimDocument(props.release.document));
+
 function scrollIntoView() {
   requestAnimationFrame(() => {
     el.value?.scrollIntoView({ block: 'center', behavior: 'smooth' });
@@ -60,12 +62,10 @@ watch(() => props.active, (isActive) => {
       <ReleaseMetaInfo :release="release" />
     </div>
 
-    <div v-if="release.html" class="mt-4 rounded-lg">
-      <div
-        inert
-        class="line-clamp-3 text-sm text-muted"
-        v-html="release.html"
-      />
+    <div v-if="previewDocument" class="mt-4 rounded-lg">
+      <div inert class="line-clamp-3 text-sm text-muted">
+        <MarkdownDocument :value="previewDocument" />
+      </div>
     </div>
   </a>
 </template>

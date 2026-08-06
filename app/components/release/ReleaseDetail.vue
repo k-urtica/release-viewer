@@ -60,10 +60,9 @@ useHead(() => ({
 
     <template #body>
       <div class="flex flex-col">
-        <section
-          class="markdown-body overflow-hidden rounded-lg p-4 ring-1 ring-default"
-          v-html="release.html"
-        />
+        <section class="markdown-body overflow-hidden rounded-lg p-4 ring-1 ring-default">
+          <MarkdownDocument :value="release.document" />
+        </section>
       </div>
     </template>
   </UDashboardPanel>

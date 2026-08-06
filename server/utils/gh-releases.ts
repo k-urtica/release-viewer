@@ -33,7 +33,7 @@ export function validatePaginationParams(query: Record<string, unknown>): { page
 /**
  * Transform Octokit release data to GitHubRelease format
  */
-export function transformOctokitRelease(octokitRelease: OctokitRelease): GitHubRelease {
+export async function transformOctokitRelease(octokitRelease: OctokitRelease): Promise<GitHubRelease> {
   const markdown = octokitRelease.body ?? '';
 
   return {
@@ -46,7 +46,7 @@ export function transformOctokitRelease(octokitRelease: OctokitRelease): GitHubR
     prerelease: octokitRelease.prerelease,
     createdAt: octokitRelease.created_at,
     publishedAt: octokitRelease.published_at,
-    html: convertMarkdownToHtml(markdown),
+    document: await parseReleaseMarkdown(markdown),
   };
 }
 
@@ -84,7 +84,7 @@ export async function fetchGitHubReleases(
   });
 
   const { hasNext, hasPrev } = parseLinkHeader(response.headers.link);
-  const releases = response.data.map(transformOctokitRelease);
+  const releases = await Promise.all(response.data.map(transformOctokitRelease));
 
   return {
     releases,
