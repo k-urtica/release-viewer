@@ -1,7 +1,7 @@
 <template>
   <UTooltip text="GitHub Repository" arrow>
     <UButton
-      icon="i-simple-icons-github"
+      icon="local-i-github"
       size="sm"
       variant="outline"
       :to="REPOSITORY_URL"

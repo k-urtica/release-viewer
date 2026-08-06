@@ -102,6 +102,12 @@ export default defineNuxtConfig({
     clientBundle: {
       scan: true,
     },
+    customCollections: [
+      {
+        prefix: '',
+        dir: './app/assets/icons',
+      }
+    ],
     serverBundle: false,
   },
 
